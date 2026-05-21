@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q-ZONE | ECE Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <h2 class="nav-brand">Q-ZONE</h2>
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#semesters">SEMESTERS</a></li>
+            <li><a href="https://vnit.ac.in/" target="_blank">VNIT</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1 class="main-title">Q-ZONE</h1>
+        
+        <div class="tagline">>> PURE SIGNALS. ZERO NOISE. <<</div>
+        
+        <div class="info-block">
+            <h3>STABILIZE YOUR GRADES</h3>
+            <p>The ultimate resource hub for notes, PYQs, and assignments.</p>
+            <p class="highlight-text">// By the students, for the students.</p>
+        </div>
+        
+        <div class="btn-container">
+            <button class="primary-btn" onclick="document.getElementById('semesters').scrollIntoView({behavior: 'smooth'})">EXPLORE SEMESTERS</button>
+            <button class="secondary-btn">SUBMIT MATERIAL</button>
+            <button class="tertiary-btn">📚 ECE COURSEBOOK</button>
+        </div>
+    </header>
+
+    <section id="semesters" class="semester-section">
+        <div class="section-header">
+            <h2 class="section-title">ACADEMIC VAULT</h2>
+            <p class="section-subtitle">Select your target data stream.</p>
+        </div>
+        
+        <div class="grid-container">
+            
+            <div class="sem-card active">
+                <div class="card-top">
+                    <h3>SEMESTER 1</h3>
+                    <span class="status-badge online">● ONLINE</span>
+                </div>
+                <div class="sem-stats">
+                    <span>📚 5 Subjects</span>
+                    <span class="dot-divider">•</span>
+                    <span>🔬 3 Labs</span>
+                </div>
+                <button class="vault-btn primary" onclick="openModal('SEMESTER 1')">ACCESS VAULT</button>
+            </div>
+
+            <div class="sem-card active">
+                <div class="card-top">
+                    <h3>SEMESTER 2</h3>
+                    <span class="status-badge online">● ONLINE</span>
+                </div>
+                <div class="sem-stats">
+                    <span>📚 6 Subjects</span>
+                    <span class="dot-divider">•</span>
+                    <span>🔬 4 Labs</span>
+                </div>
+                <button class="vault-btn primary" onclick="openModal('SEMESTER 2')">ACCESS VAULT</button>
+            </div>
+
+            <div class="sem-card active">
+                <div class="card-top">
+                    <h3>SEMESTER 3</h3>
+                    <span class="status-badge online">● ONLINE</span>
+                </div>
+                <div class="sem-stats">
+                    <span>📚 5 Subjects</span>
+                    <span class="dot-divider">•</span>
+                    <span>🔬 4 Labs</span>
+                </div>
+                <button class="vault-btn primary" onclick="openModal('SEMESTER 3')">ACCESS VAULT</button>
+            </div>
+
+            <div class="sem-card active">
+                <div class="card-top">
+                    <h3>SEMESTER 4</h3>
+                    <span class="status-badge online">● ONLINE</span>
+                </div>
+                <div class="sem-stats">
+                    <span>📚 6 Subjects</span>
+                    <span class="dot-divider">•</span>
+                    <span>🔬 3 Labs</span>
+                </div>
+                <button class="vault-btn primary" onclick="openModal('SEMESTER 4')">ACCESS VAULT</button>
+            </div>
+
+            <div class="sem-card locked">
+                <div class="card-top">
+                    <h3>SEMESTER 5</h3>
+                    <span class="status-badge compiling">↻ COMPILING</span>
+                </div>
+                <div class="sem-stats"><span>📚 Core Subjects</span></div>
+                <button class="vault-btn disabled">SYSTEM LOCKED</button>
+            </div>
+
+            <div class="sem-card locked">
+                <div class="card-top">
+                    <h3>SEMESTER 6</h3>
+                    <span class="status-badge compiling">↻ COMPILING</span>
+                </div>
+                <div class="sem-stats"><span>📚 Core Subjects</span></div>
+                <button class="vault-btn disabled">SYSTEM LOCKED</button>
+            </div>
+
+            <div class="sem-card locked">
+                <div class="card-top">
+                    <h3>SEMESTER 7</h3>
+                    <span class="status-badge encrypted">✖ ENCRYPTED</span>
+                </div>
+                <div class="sem-stats"><span>🔒 Restricted Access</span></div>
+                <button class="vault-btn disabled">UNAVAILABLE</button>
+            </div>
+
+            <div class="sem-card locked">
+                <div class="card-top">
+                    <h3>SEMESTER 8</h3>
+                    <span class="status-badge encrypted">✖ ENCRYPTED</span>
+                </div>
+                <div class="sem-stats"><span>🔒 Restricted Access</span></div>
+                <button class="vault-btn disabled">UNAVAILABLE</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="vaultModal" class="modal-overlay">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <div class="header-text">
+                    <h3 id="modalTitle">SEMESTER VAULT</h3>
+                    <p class="modal-subtitle">Secure Data Stream: Active</p>
+                </div>
+                <button class="close-btn" onclick="closeModal()">✖</button>
+            </div>
+
+            <div class="modal-controls">
+                <input type="text" placeholder="Search subjects or files..." class="modal-search">
+                <div class="filter-group">
+                    <button class="filter-btn active">ALL</button>
+                    <button class="filter-btn">THEORY</button>
+                    <button class="filter-btn">LABS</button>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <h4>Engineering Physics</h4>
+                        <span class="credit-badge">TH | 4 Credits</span>
+                    </div>
+                    <div class="resource-grid">
+                        <a href="#" class="resource-btn txt-green">📝 Notes</a>
+                        <a href="#" class="resource-btn txt-blue">🎯 PYQs</a>
+                        <a href="#" class="resource-btn txt-orange">✍️ Assignments</a>
+                    </div>
+                </div>
+
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <h4>Applied Mathematics - I</h4>
+                        <span class="credit-badge">TH | 4 Credits</span>
+                    </div>
+                    <div class="resource-grid">
+                        <a href="#" class="resource-btn txt-green">📝 Notes</a>
+                        <a href="#" class="resource-btn txt-blue">🎯 PYQs</a>
+                        <a href="#" class="resource-btn txt-orange">✍️ Assignments</a>
+                    </div>
+                </div>
+
+                <div class="subject-card">
+                    <div class="subject-header">
+                        <h4>Basic Electrical Lab</h4>
+                        <span class="credit-badge lab-badge">PR | 2 Credits</span>
+                    </div>
+                    <div class="resource-grid">
+                        <a href="#" class="resource-btn txt-green">🧪 Lab Manual</a>
+                        <a href="#" class="resource-btn txt-blue">📘 Journal Files</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
