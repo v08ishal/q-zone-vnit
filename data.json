@@ -1,0 +1,19 @@
+{
+  "SEMESTER 1": [
+    {
+      "name": "Engineering Physics",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "https://drive.google.com/file/d/1TusHALoRJoYEvhk1SwhyvxcWwW1TTemF/view?usp=drive_link",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Basic Electrical Lab",
+      "type": "Lab",
+      "credits": "2",
+      "manualLink": "#",
+      "journalLink": "#"
+    }
+  ]
+}
