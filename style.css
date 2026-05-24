@@ -522,65 +522,65 @@ button {
 .txt-orange { color: #fb923c; border-color: rgba(251, 146, 60, 0.3); }
 .txt-orange:hover { background: #f97316; color: #030504; }
 /* =========================================
-   MOBILE RESPONSIVENESS FIX
+   MOBILE RESPONSIVENESS (PREMIUM UI OVERRIDE)
    ========================================= */
 @media screen and (max-width: 600px) {
-    /* Stack the buttons vertically instead of side-by-side */
-    .resource-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    /* Give the buttons more breathing room for thumbs */
-    .resource-btn {
-        width: 100%;
-        text-align: center;
-        padding: 12px;
+    /* 1. Hide the cluttered text links at the top on mobile */
+    .nav-links {
+        display: none !important;
     }
 
-    /* Stack the Subject Title and the Credit Badge */
-    .subject-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    /* Ensure the pop-up modal fits inside the phone screen */
-    .modal-content {
-        width: 90%;
-        margin: 10% auto;
-        padding: 15px;
-    }
-}
-/* =========================================
-   MOBILE RESPONSIVENESS (HERO SECTION)
-   ========================================= */
-@media screen and (max-width: 600px) {
-    /* 1. Prevent the website from scrolling sideways */
+    /* 2. Absolute Centering for the main content */
     body, html {
         overflow-x: hidden !important;
         width: 100% !important;
     }
+    .container, .hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        padding: 20px 10px !important;
+    }
 
-    /* 2. Shrink the giant Q-ZONE text to fit the phone screen */
+    /* 3. The ZOT-HUB Glow & Font Sizing */
     h1, .hero-title {
-        font-size: 22vw !important; /* vw means 'viewport width' - it shrinks automatically! */
-        line-height: 1 !important;
-        word-wrap: break-word;
+        font-size: 4rem !important; /* Much cleaner size */
+        line-height: 1.1 !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+        text-shadow: 0 0 25px rgba(74, 222, 128, 0.6); /* The Neon Glow */
+        word-wrap: normal !important;
     }
 
-    /* 3. Adjust the "STABILIZE YOUR GRADES" box */
-    .hero-content, .info-box, .card, .container {
-        width: 92% !important;
-        margin: 15px auto !important;
-        padding: 15px !important;
-    }
-
-    /* 4. Fix the pure signals text wrapping */
+    /* 4. Minimalist Subtitle */
     h3, .subtitle, .tagline {
         font-size: 14px !important;
+        color: #94a3b8 !important;
         letter-spacing: 2px !important;
-        text-align: center;
+        margin-bottom: 25px !important;
+    }
+
+    /* 5. Destroy the bulky Info Box and make it seamless */
+    .info-box {
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border-left: none !important;
+    }
+
+    /* 6. Pill-Shaped, Glowing Buttons */
+    .primary-btn, .tertiary-btn, .resource-btn {
+        border-radius: 50px !important; /* Perfect rounded edges */
+        width: 85% !important;
+        margin: 10px auto !important;
+        padding: 15px !important;
+        text-align: center !important;
+        display: block !important;
+        box-shadow: 0 0 15px rgba(74, 222, 128, 0.3) !important; /* Button Glow */
+        font-weight: 600 !important;
+        letter-spacing: 1px !important;
     }
 }
