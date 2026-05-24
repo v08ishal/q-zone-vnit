@@ -592,7 +592,7 @@ button {
 
     /* 6. Pill-Shaped, Glowing Buttons */
     .primary-btn, .tertiary-btn, .resource-btn {
-        border-radius: 50px !important; 
+        border-radius: 4px !important; 
         width: 85% !important;
         margin: 10px auto !important;
         padding: 15px !important;
