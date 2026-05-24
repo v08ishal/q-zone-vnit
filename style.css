@@ -525,9 +525,28 @@ button {
    MOBILE RESPONSIVENESS (PREMIUM UI OVERRIDE)
    ========================================= */
 @media screen and (max-width: 600px) {
-    /* 1. Hide the cluttered text links at the top on mobile */
+    /* 1. Fix the Top Navigation Bar (Stack & Center) */
+    nav, .navbar {
+        display: flex !important;
+        flex-direction: column !important; /* Stack logo and links */
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 15px 0 !important;
+    }
+    .logo {
+        text-align: center !important;
+        margin-bottom: 12px !important; /* Space between logo and links */
+    }
     .nav-links {
-        display: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 20px !important; /* Even spacing between links */
+        width: 100% !important;
+    }
+    .nav-links a {
+        font-size: 13px !important; /* Smaller, cleaner font for mobile */
+        letter-spacing: 1px !important;
     }
 
     /* 2. Absolute Centering for the main content */
@@ -544,13 +563,13 @@ button {
         padding: 20px 10px !important;
     }
 
-    /* 3. The ZOT-HUB Glow & Font Sizing */
+    /* 3. The Glow & Font Sizing */
     h1, .hero-title {
-        font-size: 4rem !important; /* Much cleaner size */
+        font-size: 3.5rem !important; 
         line-height: 1.1 !important;
         text-align: center !important;
         margin-bottom: 10px !important;
-        text-shadow: 0 0 25px rgba(74, 222, 128, 0.6); /* The Neon Glow */
+        text-shadow: 0 0 25px rgba(74, 222, 128, 0.6); 
         word-wrap: normal !important;
     }
 
@@ -573,13 +592,13 @@ button {
 
     /* 6. Pill-Shaped, Glowing Buttons */
     .primary-btn, .tertiary-btn, .resource-btn {
-        border-radius: 50px !important; /* Perfect rounded edges */
+        border-radius: 50px !important; 
         width: 85% !important;
         margin: 10px auto !important;
         padding: 15px !important;
         text-align: center !important;
         display: block !important;
-        box-shadow: 0 0 15px rgba(74, 222, 128, 0.3) !important; /* Button Glow */
+        box-shadow: 0 0 15px rgba(74, 222, 128, 0.3) !important; 
         font-weight: 600 !important;
         letter-spacing: 1px !important;
     }
