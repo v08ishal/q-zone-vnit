@@ -553,3 +553,34 @@ button {
         padding: 15px;
     }
 }
+/* =========================================
+   MOBILE RESPONSIVENESS (HERO SECTION)
+   ========================================= */
+@media screen and (max-width: 600px) {
+    /* 1. Prevent the website from scrolling sideways */
+    body, html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* 2. Shrink the giant Q-ZONE text to fit the phone screen */
+    h1, .hero-title {
+        font-size: 22vw !important; /* vw means 'viewport width' - it shrinks automatically! */
+        line-height: 1 !important;
+        word-wrap: break-word;
+    }
+
+    /* 3. Adjust the "STABILIZE YOUR GRADES" box */
+    .hero-content, .info-box, .card, .container {
+        width: 92% !important;
+        margin: 15px auto !important;
+        padding: 15px !important;
+    }
+
+    /* 4. Fix the pure signals text wrapping */
+    h3, .subtitle, .tagline {
+        font-size: 14px !important;
+        letter-spacing: 2px !important;
+        text-align: center;
+    }
+}
