@@ -1,19 +1,243 @@
 {
   "SEMESTER 1": [
     {
-      "name": "Engineering Physics",
+      "name": "Mathematics I",
       "type": "Theory",
       "credits": "4",
-      "notesLink": "https://drive.google.com/file/d/1TusHALoRJoYEvhk1SwhyvxcWwW1TTemF/view?usp=drive_link",
+      "notesLink": "#",
       "pyqLink": "#",
       "assignmentLink": "#"
     },
     {
-      "name": "Basic Electrical Lab",
+      "name": "Physics for ECE",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Computer Programming",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Electrical Engineering",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Environmental Studies",
+      "type": "Theory",
+      "credits": "2",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    }
+  ],
+  "SEMESTER 2": [
+    {
+      "name": "Mathematics II",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Engineering Mechanics",
+      "type": "Theory",
+      "credits": "3",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Electronic Circuits",
+      "type": "Theory",
+      "credits": "5",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Networks and Systems",
+      "type": "Theory",
+      "credits": "3",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "English and Corporate Communication",
+      "type": "Theory",
+      "credits": "3",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Computer-Aided Drafting and Modelling",
       "type": "Lab",
       "credits": "2",
       "manualLink": "#",
       "journalLink": "#"
+    }
+  ],
+  "SEMESTER 3": [
+    {
+      "name": "Digital Circuits and Hardware Design",
+      "type": "Theory",
+      "credits": "5",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Signals and Systems Analysis",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Electromagnetic Fields",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Analog Circuit Design",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Measurements and Instrumentation",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Linear Algebra for Machine Learning Applications",
+      "type": "Theory",
+      "credits": "3",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    }
+  ],
+  "SEMESTER 4": [
+    {
+      "name": "Analog Communication",
+      "type": "Theory",
+      "credits": "5",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Statistical Signal Processing",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Digital Signal Processing",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Microprocessors and Microcontrollers",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Waveguides and Antennas",
+      "type": "Theory",
+      "credits": "3",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Electronic Product Engineering Workshop",
+      "type": "Lab",
+      "credits": "1",
+      "manualLink": "#",
+      "journalLink": "#"
+    }
+  ],
+  "SEMESTER 5": [
+    {
+      "name": "Digital Communication",
+      "type": "Theory",
+      "credits": "5",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Control Engineering",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "RF and Microwave Engineering",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    },
+    {
+      "name": "Integrated Circuit Design",
+      "type": "Theory",
+      "credits": "4",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
+    }
+  ],
+  "SEMESTER 6": [
+    {
+      "name": "Project Course",
+      "type": "Lab",
+      "credits": "0",
+      "manualLink": "#",
+      "journalLink": "#"
+    },
+    {
+      "name": "Department Elective I",
+      "type": "Theory",
+      "credits": "3",
+      "notesLink": "#",
+      "pyqLink": "#",
+      "assignmentLink": "#"
     }
   ]
 }
