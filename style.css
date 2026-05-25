@@ -1,538 +1,196 @@
-/* 1. IMPORT GOOGLE FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap');
-
+/* =========================================
+   BASE THEME & HACKER GRID BACKGROUND
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* 2. THE BACKGROUND */
 body {
-    background-color: #030504;
-    color: #e2e8f0;
-    background-image: 
-        radial-gradient(circle at 50% 30%, rgba(20, 83, 45, 0.4) 0%, transparent 60%),
-        linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
-    background-size: 100% 100%, 40px 40px, 40px 40px;
-    background-position: center top, center center, center center;
-    background-attachment: fixed;
+    background-color: #0b1120;
+    /* This creates the faint green grid pattern from your screenshots! */
+    background-image: linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: #f8fafc;
+    line-height: 1.6;
 }
 
-/* 3. NAVIGATION BAR */
-nav {
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* =========================================
+   NAVIGATION & HERO
+   ========================================= */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    border-bottom: 1px solid rgba(34, 197, 94, 0.2);
-    background-color: rgba(3, 5, 4, 0.85);
-    backdrop-filter: blur(5px);
+    padding: 20px 40px;
+    background-color: transparent;
 }
 
-nav h2.nav-brand {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
-    letter-spacing: 4px;
+.logo {
+    font-size: 1.8rem;
     font-weight: 900;
-    background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0px 0px 8px rgba(34, 197, 94, 0.4));
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 35px;
-}
-
-nav ul li a {
-    font-family: 'Rajdhani', sans-serif;
-    color: #94a3b8;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    transition: color 0.2s ease, text-shadow 0.2s ease;
-}
-
-nav ul li a:hover {
-    color: #f8fafc;
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-}
-
-/* 4. THE HERO SECTION */
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 100px 20px;
-}
-
-.main-title {
-    font-family: 'Orbitron', sans-serif; 
-    font-size: 140px; 
-    font-weight: 900;
-    letter-spacing: 10px;
-    margin-bottom: 10px;
-    background: linear-gradient(180deg, #ffffff 0%, #4ade80 40%, #15803d 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: 
-        drop-shadow(0px 15px 15px rgba(0, 0, 0, 0.9)) 
-        drop-shadow(0px 0px 25px rgba(34, 197, 94, 0.3)); 
-}
-
-.tagline {
-    font-family: 'Rajdhani', sans-serif; 
+    letter-spacing: 3px;
     color: #4ade80;
-    font-size: 22px;
-    letter-spacing: 8px;
-    margin-bottom: 40px;
-    font-weight: 700;
-    text-shadow: 0px 0px 10px rgba(34, 197, 94, 0.3);
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
 }
 
-/* 5. THE CONTENT BLOCK */
-.info-block {
-    background: rgba(10, 15, 10, 0.7); 
-    border: 1px solid rgba(34, 197, 94, 0.2); 
-    border-left: 4px solid #22c55e; 
-    padding: 25px 35px;
-    text-align: left;
-    max-width: 650px;
-    margin-bottom: 40px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); 
-    backdrop-filter: blur(3px);
-}
-
-.info-block h3 {
-    font-family: 'Rajdhani', sans-serif; 
-    color: #f8fafc;
-    font-size: 28px;
-    letter-spacing: 2px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.info-block p {
-    font-family: 'Inter', sans-serif; 
-    font-size: 16px;
-    color: #94a3b8;
-    line-height: 1.7;
-    font-weight: 400;
-}
-
-.info-block .highlight-text {
-    font-family: 'Rajdhani', sans-serif; 
-    color: #4ade80;
-    font-size: 18px;
-    margin-top: 15px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-/* 6. BUTTONS */
-.btn-container {
+.nav-links {
     display: flex;
     gap: 25px;
-    flex-wrap: wrap; /* Allows buttons to stack on smaller screens */
-    justify-content: center;
 }
 
-button {
-    font-family: 'Rajdhani', sans-serif; 
-    padding: 15px 35px;
-    font-size: 18px;
+.nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
     font-weight: 700;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    letter-spacing: 2px;
-    transition: all 0.2s ease;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #4ade80;
+}
+
+.hero-content {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #4ade80;
+    text-shadow: 0 0 25px rgba(74, 222, 128, 0.5);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #4ade80;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+/* =========================================
+   BUTTONS & GRID
+   ========================================= */
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
 .primary-btn {
-    background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
-    color: #030504;
-    box-shadow: 0px 4px 15px rgba(34, 197, 94, 0.3);
+    background-color: #0f172a;
+    color: #4ade80;
+    border: 1px solid #4ade80;
+    padding: 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(74, 222, 128, 0.1);
 }
 
 .primary-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 20px rgba(34, 197, 94, 0.5);
-    background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%);
+    background-color: #4ade80;
+    color: #0b1120;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
 }
 
-.secondary-btn {
-    background-color: transparent;
-    color: #4ade80;
-    border: 2px solid #22c55e;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.secondary-btn:hover {
-    background-color: rgba(34, 197, 94, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 20px rgba(34, 197, 94, 0.2);
-}
-
-/* NEW: THE COURSEBOOK BUTTON */
 .tertiary-btn {
     background-color: transparent;
-    color: #c084fc; /* Vibrant Tech Purple */
-    border: 2px solid #c084fc;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .tertiary-btn:hover {
-    background-color: rgba(192, 132, 252, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0px 6px 20px rgba(192, 132, 252, 0.3);
-}
-
-/* 7. SEMESTER GRID SECTION */
-.semester-section {
-    padding: 80px 20px 120px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.section-title {
-    font-family: 'Orbitron', sans-serif;
-    color: #f8fafc;
-    font-size: 40px;
-    letter-spacing: 6px;
-    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-    margin-bottom: 10px;
-}
-
-.section-subtitle {
-    font-family: 'Rajdhani', sans-serif;
-    color: #94a3b8;
-    font-size: 18px;
-    letter-spacing: 3px;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.sem-card {
-    background: rgba(10, 15, 10, 0.65);
-    border: 1px solid rgba(34, 197, 94, 0.15);
-    border-radius: 6px;
-    padding: 30px 25px;
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.sem-card.active:hover {
-    transform: translateY(-8px);
-    border-color: #22c55e;
-    box-shadow: 0px 15px 35px rgba(34, 197, 94, 0.15);
-}
-
-.sem-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 3px;
-    background: linear-gradient(90deg, #22c55e, #16a34a);
-}
-
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-}
-
-.sem-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: #f8fafc;
-    font-size: 22px; 
-    letter-spacing: 2px;
-}
-
-.status-badge {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    white-space: nowrap;
-}
-
-.online { background: rgba(34, 197, 94, 0.1); color: #4ade80; border: 1px solid #22c55e; box-shadow: 0px 0px 10px rgba(34, 197, 94, 0.3); }
-.compiling { background: rgba(234, 179, 8, 0.1); color: #facc15; border: 1px solid #eab308; }
-.encrypted { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid #ef4444; }
-
-.sem-stats {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Rajdhani', sans-serif;
-    color: #94a3b8;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 30px;
-    flex-grow: 1;
-}
-
-.dot-divider { color: #475569; font-size: 20px; }
-
-.vault-btn {
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    letter-spacing: 2px;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.vault-btn.primary {
-    background: rgba(34, 197, 94, 0.1);
+    border-color: #4ade80;
     color: #4ade80;
-    border: 1px solid #22c55e;
 }
 
-.vault-btn.primary:hover {
-    background: #22c55e;
-    color: #030504;
-    box-shadow: 0px 0px 15px rgba(34, 197, 94, 0.4);
+.master-btn {
+    width: 100%;
+    margin-top: 20px;
+    display: block;
 }
 
-.sem-card.locked { opacity: 0.6; }
-.sem-card.locked::before { background: #475569; }
-.sem-card.locked h3 { color: #94a3b8; }
-.sem-card.locked .sem-stats { color: #475569; }
-
-.vault-btn.disabled {
-    background: transparent;
-    color: #475569;
-    border: 1px dashed #475569;
-    cursor: not-allowed;
-}
-.vault-btn.disabled:hover { transform: none; box-shadow: none; background: transparent; }
-
-/* 8. MODAL (EXPANDED DASHBOARD STYLE) */
-.modal-overlay {
+/* =========================================
+   POPUP MODAL (HIDDEN BY DEFAULT)
+   ========================================= */
+.modal {
+    display: none; /* This fixes the broken layout in your screenshot! */
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(3, 5, 4, 0.9); 
-    backdrop-filter: blur(12px); 
+    background-color: rgba(11, 17, 32, 0.9);
+    backdrop-filter: blur(5px);
     z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0; visibility: hidden;
-    transition: all 0.3s ease;
+    overflow-y: auto;
 }
-
-.modal-overlay.active { opacity: 1; visibility: visible; }
 
 .modal-content {
-    background: rgba(10, 15, 10, 0.95);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    border-top: 4px solid #22c55e;
-    width: 95%; max-width: 800px; 
-    max-height: 90vh; 
+    background-color: #0b1120;
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.8);
-    transform: translateY(30px) scale(0.98);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 25px 30px;
-    border-bottom: 1px solid rgba(34, 197, 94, 0.2);
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.modal-header h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: #22c55e;
-    font-size: 28px;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
-}
-
-.modal-subtitle {
-    font-family: 'Rajdhani', sans-serif;
-    color: #94a3b8;
-    font-size: 14px;
-    letter-spacing: 1px;
+    border: 1px solid #1e293b;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
 }
 
 .close-btn {
-    background: transparent;
-    color: #94a3b8;
-    border: none;
-    font-size: 24px;
+    color: #64748b;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
-.close-btn:hover { color: #ef4444; transform: scale(1.1); }
+.close-btn:hover { color: #f8fafc; }
 
-.modal-controls {
-    padding: 20px 30px;
-    display: flex;
-    gap: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.modal-search {
-    flex-grow: 1;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e2e8f0;
-    font-family: 'Inter', sans-serif;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-size: 15px;
-    outline: none;
-    transition: border 0.2s ease;
-}
-
-.modal-search:focus { border-color: #22c55e; }
-
-.filter-group { display: flex; gap: 10px; }
-
-.filter-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #94a3b8;
-    padding: 0 15px;
-    border-radius: 4px;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-.filter-btn:hover, .filter-btn.active {
-    background: rgba(34, 197, 94, 0.1);
-    color: #4ade80;
-    border-color: #22c55e;
-}
-
-.modal-body {
-    padding: 30px;
-    overflow-y: auto; 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.modal-body::-webkit-scrollbar { width: 8px; }
-.modal-body::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
-.modal-body::-webkit-scrollbar-thumb { background: #14532d; border-radius: 4px; }
-.modal-body::-webkit-scrollbar-thumb:hover { background: #22c55e; }
-
-.subject-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-    padding: 20px;
-    transition: all 0.2s ease;
-}
-
-.subject-card:hover {
-    border-color: rgba(34, 197, 94, 0.3);
-    background: rgba(34, 197, 94, 0.02);
-}
-
-.subject-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.subject-header h4 {
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
+#modal-title {
     color: #f8fafc;
+    margin-bottom: 20px;
+    font-size: 24px;
+    letter-spacing: 2px;
 }
 
-.credit-badge {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    color: #94a3b8;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-weight: 700;
-}
-
-.lab-badge { color: #facc15; background: rgba(234, 179, 8, 0.1); border: 1px solid #eab308; }
-
-.resource-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
-}
-
-.resource-btn {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid;
-    text-align: center;
-    transition: all 0.2s ease;
-}
-
-.txt-green { color: #4ade80; border-color: rgba(74, 222, 128, 0.3); }
-.txt-green:hover { background: #4ade80; color: #030504; }
-
-.txt-blue { color: #60a5fa; border-color: rgba(96, 165, 250, 0.3); }
-.txt-blue:hover { background: #3b82f6; color: #030504; }
-
-.txt-orange { color: #fb923c; border-color: rgba(251, 146, 60, 0.3); }
-.txt-orange:hover { background: #f97316; color: #030504; }
 /* =========================================
-   SEARCH & FILTER CONTROLS
+   SEARCH & FILTER CONTROLS (NEW)
    ========================================= */
 .controls-container {
     display: flex;
     gap: 15px;
     margin-bottom: 25px;
-    flex-wrap: wrap; /* Helps it fit on mobile */
+    flex-wrap: wrap;
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #1e293b;
 }
 
 #search-bar {
-    flex: 1; /* Takes up remaining space */
+    flex: 1;
     padding: 12px 15px;
     background: #0b1120;
     border: 1px solid #334155;
@@ -571,91 +229,119 @@ button {
     border-color: #94a3b8;
 }
 
-/* The Active (Green) State */
 .filter-btn.active {
     border-color: #4ade80;
     color: #4ade80;
     background: rgba(74, 222, 128, 0.05);
 }
+
 /* =========================================
-   MOBILE RESPONSIVENESS (PREMIUM UI OVERRIDE)
+   SUBJECT CARDS
+   ========================================= */
+.subject-card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.subject-card:hover {
+    border-color: #334155;
+    transform: translateY(-2px);
+}
+
+.subject-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 10px;
+}
+
+.subject-header h3 {
+    color: #f8fafc;
+    font-size: 1.1rem;
+}
+
+.credit-badge {
+    background: #1e293b;
+    color: #94a3b8;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.resource-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.resource-btn {
+    background: #0b1120;
+    color: #4ade80;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    flex: 1;
+    text-align: center;
+    border: 1px solid #1e293b;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.resource-btn:hover {
+    background: #4ade80;
+    color: #0b1120;
+    border-color: #4ade80;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
    ========================================= */
 @media screen and (max-width: 600px) {
-    /* 1. Fix the Top Navigation Bar (Stack & Center) */
-    nav, .navbar {
-        display: flex !important;
-        flex-direction: column !important; /* Stack logo and links */
-        justify-content: center !important;
-        align-items: center !important;
+    .navbar {
+        flex-direction: column !important;
         padding: 15px 0 !important;
     }
-    .logo {
-        text-align: center !important;
-        margin-bottom: 12px !important; /* Space between logo and links */
-    }
     .nav-links {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: center !important;
-        gap: 20px !important; /* Even spacing between links */
-        width: 100% !important;
+        margin-top: 15px;
+        width: 100%;
+        justify-content: center;
     }
-    .nav-links a {
-        font-size: 13px !important; /* Smaller, cleaner font for mobile */
-        letter-spacing: 1px !important;
-    }
-
-    /* 2. Absolute Centering for the main content */
     body, html {
         overflow-x: hidden !important;
         width: 100% !important;
     }
-    .container, .hero-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        width: 100% !important;
-        padding: 20px 10px !important;
-    }
-
-    /* 3. The Glow & Font Sizing */
-    h1, .hero-title {
+    .hero-title {
         font-size: 3.5rem !important; 
-        line-height: 1.1 !important;
-        text-align: center !important;
-        margin-bottom: 10px !important;
-        text-shadow: 0 0 25px rgba(74, 222, 128, 0.6); 
-        word-wrap: normal !important;
     }
-
-    /* 4. Minimalist Subtitle */
-    h3, .subtitle, .tagline {
-        font-size: 14px !important;
-        color: #94a3b8 !important;
-        letter-spacing: 2px !important;
-        margin-bottom: 25px !important;
+    .resource-grid {
+        display: flex;
+        flex-direction: column;
     }
-
-    /* 5. Destroy the bulky Info Box and make it seamless */
-    .info-box {
-        border: none !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        border-left: none !important;
+    .controls-container {
+        flex-direction: column;
     }
-
-    /* 6. Pill-Shaped, Glowing Buttons */
-    .primary-btn, .tertiary-btn, .resource-btn {
-        border-radius: 4px !important; 
-        width: 85% !important;
-        margin: 10px auto !important;
-        padding: 15px !important;
-        text-align: center !important;
-        display: block !important;
-        box-shadow: 0 0 15px rgba(74, 222, 128, 0.3) !important; 
-        font-weight: 600 !important;
-        letter-spacing: 1px !important;
+    .filter-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .filter-btn {
+        flex: 1;
+        padding: 10px 5px;
+    }
+    .subject-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .resource-links {
+        flex-direction: column;
     }
 }
