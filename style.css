@@ -522,6 +522,62 @@ button {
 .txt-orange { color: #fb923c; border-color: rgba(251, 146, 60, 0.3); }
 .txt-orange:hover { background: #f97316; color: #030504; }
 /* =========================================
+   SEARCH & FILTER CONTROLS
+   ========================================= */
+.controls-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap; /* Helps it fit on mobile */
+}
+
+#search-bar {
+    flex: 1; /* Takes up remaining space */
+    padding: 12px 15px;
+    background: #0b1120;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#search-bar:focus {
+    border-color: #4ade80;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: #0b1120;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    color: #f8fafc;
+    border-color: #94a3b8;
+}
+
+/* The Active (Green) State */
+.filter-btn.active {
+    border-color: #4ade80;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.05);
+}
+/* =========================================
    MOBILE RESPONSIVENESS (PREMIUM UI OVERRIDE)
    ========================================= */
 @media screen and (max-width: 600px) {
