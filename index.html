@@ -1,189 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q-ZONE | ECE Hub</title>
+    <title>Q-ZONE | VNIT ECE Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <h2 class="nav-brand">Q-ZONE</h2>
-        <ul>
-            
-            <li><a href="#semesters">SEMESTERS</a></li>
-            <li><a href="https://vnit.ac.in/" target="_blank">VNIT</a></li>
-        </ul>
+    <nav class="navbar">
+        <div class="logo">Q-ZONE</div>
+        <div class="nav-links">
+            <a href="#">SEMESTERS</a>
+            <a href="#">VNIT</a>
+        </div>
     </nav>
 
-    <header>
-        <h1 class="main-title">Q-ZONE</h1>
-        
-        <div class="tagline">>> PURE SIGNALS. ZERO NOISE. <<</div>
-        
-        <div class="info-block">
-            <h3>STABILIZE YOUR GRADES</h3>
-            <p>The ultimate resource hub for notes, PYQs, and assignments.</p>
-            <p class="highlight-text">// By the students, for the students.</p>
+    <div class="container hero-content">
+        <h1 class="hero-title">Q-ZONE</h1>
+        <h3 class="subtitle">THE ULTIMATE ECE HUB</h3>
+    </div>
+
+    <div class="container">
+        <div class="resource-grid">
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 1')">SEMESTER 1</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 2')">SEMESTER 2</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 3')">SEMESTER 3</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 4')">SEMESTER 4</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 5')">SEMESTER 5</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 6')">SEMESTER 6</button>
         </div>
         
-        <div class="btn-container">
-            <button class="primary-btn" onclick="document.getElementById('semesters').scrollIntoView({behavior: 'smooth'})">EXPLORE SEMESTERS</button>
-            <button class="secondary-btn">SUBMIT MATERIAL</button>
-            <button class="tertiary-btn" onclick="window.open('https://drive.google.com/drive/folders/1I6iWIWAVFJFW4i3AE-vku5tzm-SRmHKW?usp=drive_link', '_blank')">📚 COURSEBOOK</button>
-</div>
-        </div>
-    </header>
+        <button class="tertiary-btn master-btn" onclick="window.open('YOUR_MASTER_FOLDER_LINK_HERE', '_blank')">
+            📚 ECE MASTER FILES
+        </button>
+    </div>
 
-    <section id="semesters" class="semester-section">
-        <div class="section-header">
-            <h2 class="section-title">ACADEMIC VAULT</h2>
-            <p class="section-subtitle">Select your target data stream.</p>
-        </div>
-        
-        <div class="grid-container">
-            
-            <div class="sem-card active">
-                <div class="card-top">
-                    <h3>SEMESTER 1</h3>
-                    <span class="status-badge online">● ONLINE</span>
-                </div>
-                <div class="sem-stats">
-                    <span>📚 5 Subjects</span>
-                    <span class="dot-divider">•</span>
-                    <span>🔬 3 Labs</span>
-                </div>
-                <button class="vault-btn primary" onclick="openModal('SEMESTER 1')">ACCESS VAULT</button>
-            </div>
-
-            <div class="sem-card active">
-                <div class="card-top">
-                    <h3>SEMESTER 2</h3>
-                    <span class="status-badge online">● ONLINE</span>
-                </div>
-                <div class="sem-stats">
-                    <span>📚 6 Subjects</span>
-                    <span class="dot-divider">•</span>
-                    <span>🔬 3 Labs</span>
-                </div>
-                <button class="vault-btn primary" onclick="openModal('SEMESTER 2')">ACCESS VAULT</button>
-            </div>
-
-            <div class="sem-card active">
-                <div class="card-top">
-                    <h3>SEMESTER 3</h3>
-                    <span class="status-badge online">● ONLINE</span>
-                </div>
-                <div class="sem-stats">
-                    <span>📚 6 Subjects</span>
-                    <span class="dot-divider">•</span>
-                    <span>🔬 4 Labs</span>
-                </div>
-                <button class="vault-btn primary" onclick="openModal('SEMESTER 3')">ACCESS VAULT</button>
-            </div>
-
-            <div class="sem-card active">
-                <div class="card-top">
-                    <h3>SEMESTER 4</h3>
-                    <span class="status-badge online">● ONLINE</span>
-                </div>
-                <div class="sem-stats">
-                    <span>📚 6 Subjects</span>
-                    <span class="dot-divider">•</span>
-                    <span>🔬 4 Labs</span>
-                </div>
-                <button class="vault-btn primary" onclick="openModal('SEMESTER 4')">ACCESS VAULT</button>
-            </div>
-
-            <div class="sem-card locked">
-                <div class="card-top">
-                    <h3>SEMESTER 5</h3>
-                    <span class="status-badge compiling">↻ COMPILING</span>
-                </div>
-                <div class="sem-stats"><span>📚 Core Subjects</span></div>
-                <button class="vault-btn disabled">SYSTEM LOCKED</button>
-            </div>
-
-            <div class="sem-card locked">
-                <div class="card-top">
-                    <h3>SEMESTER 6</h3>
-                    <span class="status-badge compiling">↻ COMPILING</span>
-                </div>
-                <div class="sem-stats"><span>📚 Core Subjects</span></div>
-                <button class="vault-btn disabled">SYSTEM LOCKED</button>
-            </div>
-
-            <div class="sem-card locked">
-                <div class="card-top">
-                    <h3>SEMESTER 7</h3>
-                    <span class="status-badge encrypted">✖ ENCRYPTED</span>
-                </div>
-                <div class="sem-stats"><span>🔒 Restricted Access</span></div>
-                <button class="vault-btn disabled">UNAVAILABLE</button>
-            </div>
-
-            <div class="sem-card locked">
-                <div class="card-top">
-                    <h3>SEMESTER 8</h3>
-                    <span class="status-badge encrypted">✖ ENCRYPTED</span>
-                </div>
-                <div class="sem-stats"><span>🔒 Restricted Access</span></div>
-                <button class="vault-btn disabled">UNAVAILABLE</button>
-            </div>
-        </div>
-    </section>
-
-    <div id="vaultModal" class="modal-overlay">
+    <div id="semester-modal" class="modal">
         <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">SEMESTER</h2>
             
-            <div class="modal-header">
-                <div class="header-text">
-                    <h3 id="modalTitle">SEMESTER VAULT</h3>
-                    <p class="modal-subtitle">Secure Data Stream: Active</p>
+            <div class="controls-container">
+                <input type="text" id="search-bar" placeholder="Search subjects or files..." oninput="filterData()">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="setFilter('All')">ALL</button>
+                    <button class="filter-btn" onclick="setFilter('Theory')">THEORY</button>
+                    <button class="filter-btn" onclick="setFilter('Lab')">LABS</button>
                 </div>
-                <button class="close-btn" onclick="closeModal()">✖</button>
             </div>
 
-            <div class="modal-controls">
-                <input type="text" placeholder="Search subjects or files..." class="modal-search">
-                <div class="filter-group">
-                    <button class="filter-btn active">ALL</button>
-                    <button class="filter-btn">THEORY</button>
-                    <button class="filter-btn">LABS</button>
-                </div>
-            </div>
-            
-            <div class="modal-body" id="modal-body">
-            </div>
+            <div id="subject-container"></div>
         </div>
     </div>
+
+    <footer style="margin-top: 60px; padding: 40px 20px 30px; text-align: center; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(74, 222, 128, 0.3);">
+        
+        <h2 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 900; font-size: 2.2rem; color: #4ade80; letter-spacing: 4px; margin: 0 auto 25px auto; text-align: center; text-transform: uppercase;">
+            Q-ZONE
+        </h2>
+
+        <div style="display: flex; justify-content: center; gap: 18px; margin-bottom: 25px;">
+            
+            <a href="YOUR_INSTAGRAM_LINK_HERE" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background-color: rgba(11, 17, 32, 0.8); border: 1px solid rgba(74, 222, 128, 0.3); color: #4ade80; text-decoration: none; font-size: 18px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#4ade80'; this.style.color='#0b1120'; this.style.boxShadow='0 0 15px rgba(74,222,128,0.6)';" onmouseout="this.style.backgroundColor='rgba(11, 17, 32, 0.8)'; this.style.color='#4ade80'; this.style.boxShadow='none';">
+                <i class="fab fa-instagram"></i>
+            </a>
+            
+            <a href="mailto:your.email@students.vnit.ac.in" style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background-color: rgba(11, 17, 32, 0.8); border: 1px solid rgba(74, 222, 128, 0.3); color: #4ade80; text-decoration: none; font-size: 18px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#4ade80'; this.style.color='#0b1120'; this.style.boxShadow='0 0 15px rgba(74,222,128,0.6)';" onmouseout="this.style.backgroundColor='rgba(11, 17, 32, 0.8)'; this.style.color='#4ade80'; this.style.boxShadow='none';">
+                <i class="fas fa-envelope"></i>
+            </a>
+            
+            <a href="YOUR_LINKEDIN_LINK_HERE" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background-color: rgba(11, 17, 32, 0.8); border: 1px solid rgba(74, 222, 128, 0.3); color: #4ade80; text-decoration: none; font-size: 18px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#4ade80'; this.style.color='#0b1120'; this.style.boxShadow='0 0 15px rgba(74,222,128,0.6)';" onmouseout="this.style.backgroundColor='rgba(11, 17, 32, 0.8)'; this.style.color='#4ade80'; this.style.boxShadow='none';">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+
+        </div>
+
+        <p style="color: #94a3b8; font-size: 13px; letter-spacing: 1px; margin: 0; font-weight: 500;">
+            © 2026 Q-Zone. All rights reserved.
+        </p>
+    </footer>
 
     <script src="script.js"></script>
-<footer style="margin-top: 60px; padding: 40px 20px 30px; text-align: center; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(74, 222, 128, 0.3);">
-    
-    <h2 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 900; font-size: 2.2rem; color: #4ade80; letter-spacing: 4px; margin: 0 auto 25px auto; text-align: center; text-transform: uppercase;">
-        Q-ZONE
-    </h2>
-
-    <div style="display: flex; justify-content: center; gap: 18px; margin-bottom: 25px;">
-        
-        <a href="YOUR_INSTAGRAM_LINK_HERE" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background-color: rgba(11, 17, 32, 0.8); border: 1px solid rgba(74, 222, 128, 0.3); color: #4ade80; text-decoration: none; font-size: 18px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#4ade80'; this.style.color='#0b1120'; this.style.boxShadow='0 0 15px rgba(74,222,128,0.6)';" onmouseout="this.style.backgroundColor='rgba(11, 17, 32, 0.8)'; this.style.color='#4ade80'; this.style.boxShadow='none';">
-            <i class="fab fa-instagram"></i>
-        </a>
-        
-        <a href="mailto:your.email@students.vnit.ac.in" style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background-color: rgba(11, 17, 32, 0.8); border: 1px solid rgba(74, 222, 128, 0.3); color: #4ade80; text-decoration: none; font-size: 18px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#4ade80'; this.style.color='#0b1120'; this.style.boxShadow='0 0 15px rgba(74,222,128,0.6)';" onmouseout="this.style.backgroundColor='rgba(11, 17, 32, 0.8)'; this.style.color='#4ade80'; this.style.boxShadow='none';">
-            <i class="fas fa-envelope"></i>
-        </a>
-        
-        <a href="YOUR_LINKEDIN_LINK_HERE" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background-color: rgba(11, 17, 32, 0.8); border: 1px solid rgba(74, 222, 128, 0.3); color: #4ade80; text-decoration: none; font-size: 18px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#4ade80'; this.style.color='#0b1120'; this.style.boxShadow='0 0 15px rgba(74,222,128,0.6)';" onmouseout="this.style.backgroundColor='rgba(11, 17, 32, 0.8)'; this.style.color='#4ade80'; this.style.boxShadow='none';">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
-
-    </div>
-
-    <p style="color: #94a3b8; font-size: 13px; letter-spacing: 1px; margin: 0; font-weight: 500;">
-        © 2026 Q-Zone. All rights reserved.
-    </p>
-</footer>
+</body>
+</html>
