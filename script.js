@@ -1,86 +1,125 @@
-// 1. Create a variable to hold your database
-let vaultData = {};
+let courseData = {};
+let currentSubjects = []; // Holds data for the currently open semester
+let currentFilter = 'All'; // Tracks which button is active (All, Theory, Lab)
 
-// 2. Fetch the data.json file as soon as the website loads
+// 1. Fetch the data from your JSON file
 fetch('data.json')
     .then(response => response.json())
     .then(data => {
-        vaultData = data;
-        console.log("Database loaded successfully!");
+        courseData = data;
     })
-    .catch(error => console.error("Error loading database:", error));
+    .catch(error => console.error('Error loading database:', error));
 
-// 3. The new upgraded Modal function
-function openModal(semesterName) {
-    const modal = document.getElementById("vaultModal");
-    const title = document.getElementById("modalTitle");
-    const modalBody = document.getElementById("modal-body"); // The empty container we just made
+// 2. Open the Modal and Load Data
+function loadSemester(semesterName) {
+    const modalTitle = document.getElementById('modal-title');
+    
+    // Set title and reset controls
+    modalTitle.innerText = semesterName;
+    document.getElementById('search-bar').value = ''; 
+    currentFilter = 'All'; 
+    updateFilterButtons();
 
-    // Set the title
-    title.innerText = semesterName + " VAULT";
-
-    // Clear any old data out of the modal before opening it
-    modalBody.innerHTML = "";
-
-    // Check if we actually wrote data for this semester in our JSON file
-    if (vaultData[semesterName]) {
-        const subjects = vaultData[semesterName];
-
-        // Loop through every subject and build the HTML automatically
-        subjects.forEach(subject => {
-            
-            // Build the top half of the card
-            let cardHTML = `
-                <div class="subject-card">
-                    <div class="subject-header">
-                        <h4>${subject.name}</h4>
-                        <span class="credit-badge ${subject.type === 'Lab' ? 'lab-badge' : ''}">${subject.type === 'Theory' ? 'TH' : 'PR'} | ${subject.credits} Credits</span>
-                    </div>
-                    <div class="resource-grid">
-            `;
-
-            // If it's a Theory subject, give it the 3 Theory buttons
-            if (subject.type === "Theory") {
-                cardHTML += `
-                    <a href="${subject.notesLink}" target="_blank" class="resource-btn txt-green">📝 Notes</a>
-                    <a href="${subject.pyqLink}" target="_blank" class="resource-btn txt-blue">🎯 PYQs</a>
-                    <a href="${subject.assignmentLink}" target="_blank" class="resource-btn txt-orange">✍️ Assignments</a>
-                `;
-            } 
-            // If it's a Lab subject, give it the 2 Lab buttons
-            else if (subject.type === "Lab") {
-                cardHTML += `
-                    <a href="${subject.manualLink}" target="_blank" class="resource-btn txt-green">🧪 Lab Manual</a>
-                    <a href="${subject.journalLink}" target="_blank" class="resource-btn txt-blue">📘 Journal Files</a>
-                `;
-            }
-
-            // Close the bottom half of the card
-            cardHTML += `
-                    </div>
-                </div>
-            `;
-
-            // Inject the finished card into the screen
-            modalBody.innerHTML += cardHTML;
-        });
+    // Grab the subjects for this semester
+    if (courseData[semesterName]) {
+        currentSubjects = courseData[semesterName];
+        renderSubjects(); // Draw the cards
     } else {
-        // If someone clicks Semester 2, but we haven't added it to JSON yet, show this cool message:
-        modalBody.innerHTML = `<p style="text-align: center; color: #94a3b8; font-family: 'Rajdhani', sans-serif; font-size: 18px; padding: 30px;">[ DATA STREAM CURRENTLY COMPILING ]</p>`;
+        currentSubjects = [];
+        document.getElementById('subject-container').innerHTML = '<p style="color: #94a3b8;">Content for this semester is currently unavailable.</p>';
     }
 
-    // Finally, show the modal
-    modal.classList.add("active");
+    // Show the modal
+    document.getElementById('semester-modal').style.display = 'block';
 }
 
+// 3. Change Filter State (Triggered by ALL, THEORY, LABS buttons)
+function setFilter(type) {
+    currentFilter = type;
+    updateFilterButtons();
+    renderSubjects(); // Redraw cards based on new filter
+}
+
+// 4. Update the Green Active Button
+function updateFilterButtons() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+        // Match button text to current filter
+        if (btn.innerText.toUpperCase() === currentFilter.toUpperCase() ||
+           (btn.innerText.toUpperCase() === 'LABS' && currentFilter === 'Lab')) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+// 5. Triggered every time a user types in the search bar
+function filterData() {
+    renderSubjects();
+}
+
+// 6. The Master Rendering Engine (Draws the cards based on filters)
+function renderSubjects() {
+    const container = document.getElementById('subject-container');
+    const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+    container.innerHTML = '';
+
+    // Filter the subjects array
+    let filtered = currentSubjects.filter(subject => {
+        // Check if it matches the Category Button (Theory/Lab)
+        let matchesType = (currentFilter === 'All') || (subject.type === currentFilter);
+        
+        // Check if it matches the Search Bar text
+        let matchesSearch = subject.name.toLowerCase().includes(searchQuery);
+
+        return matchesType && matchesSearch;
+    });
+
+    // If nothing matches, show a message
+    if (filtered.length === 0) {
+        container.innerHTML = '<p style="color: #94a3b8;">No subjects match your search.</p>';
+        return;
+    }
+
+    // Draw the filtered cards
+    filtered.forEach(subject => {
+        let cardHTML = `
+            <div class="subject-card">
+                <div class="subject-header">
+                    <h3>${subject.name}</h3>
+                    <span class="credit-badge">${subject.credits} Credits | ${subject.type}</span>
+                </div>
+                <div class="resource-links">
+        `;
+
+        if (subject.type === "Theory") {
+            cardHTML += `
+                <a href="${subject.notesLink}" target="_blank" class="resource-btn">📝 Notes</a>
+                <a href="${subject.pyqLink}" target="_blank" class="resource-btn">📄 PYQs</a>
+                <a href="${subject.assignmentLink}" target="_blank" class="resource-btn">📋 Assign</a>
+            `;
+        } else if (subject.type === "Lab") {
+            cardHTML += `
+                <a href="${subject.manualLink}" target="_blank" class="resource-btn">📘 Manual</a>
+                <a href="${subject.journalLink}" target="_blank" class="resource-btn">📓 Journal</a>
+            `;
+        }
+
+        cardHTML += `</div></div>`;
+        container.innerHTML += cardHTML;
+    });
+}
+
+// 7. Close the Modal
 function closeModal() {
-    const modal = document.getElementById("vaultModal");
-    modal.classList.remove("active");
+    document.getElementById('semester-modal').style.display = 'none';
 }
 
+// 8. Close the modal if user clicks outside the box
 window.onclick = function(event) {
-    const modal = document.getElementById("vaultModal");
+    let modal = document.getElementById('semester-modal');
     if (event.target == modal) {
-        closeModal();
+        modal.style.display = "none";
     }
 }
