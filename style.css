@@ -1,19 +1,12 @@
-/* =========================================
-   BASE THEME & HACKER GRID BACKGROUND
-   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 body {
     background-color: #0b1120;
-    /* This creates the faint green grid pattern from your screenshots! */
-    background-image: linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
     color: #f8fafc;
     line-height: 1.6;
 }
@@ -24,23 +17,17 @@ body {
     padding: 20px;
 }
 
-/* =========================================
-   NAVIGATION & HERO
-   ========================================= */
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 20px 40px;
-    background-color: transparent;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: 3px;
+    font-size: 1.5rem;
+    font-weight: 800;
     color: #4ade80;
-    text-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+    letter-spacing: 2px;
 }
 
 .nav-links {
@@ -51,41 +38,26 @@ body {
 .nav-links a {
     color: #94a3b8;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #4ade80;
+    font-weight: bold;
 }
 
 .hero-content {
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px 0;
 }
 
 .hero-title {
-    font-size: 5rem;
-    font-weight: 900;
-    letter-spacing: 4px;
+    font-size: 4rem;
     color: #4ade80;
-    text-shadow: 0 0 25px rgba(74, 222, 128, 0.5);
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
     margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 14px;
-    color: #4ade80;
+    color: #94a3b8;
     letter-spacing: 3px;
-    font-weight: bold;
 }
 
-/* =========================================
-   BUTTONS & GRID
-   ========================================= */
 .resource-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -93,255 +65,114 @@ body {
 }
 
 .primary-btn {
-    background-color: #0f172a;
-    color: #4ade80;
-    border: 1px solid #4ade80;
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
     padding: 18px;
     border-radius: 4px;
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: 2px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 0 10px rgba(74, 222, 128, 0.1);
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
 .primary-btn:hover {
-    background-color: #4ade80;
+    background: #4ade80;
     color: #0b1120;
-    box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
 }
 
 .tertiary-btn {
-    background-color: transparent;
-    color: #94a3b8;
-    border: 1px solid #334155;
-    padding: 15px 30px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.tertiary-btn:hover {
-    border-color: #4ade80;
+    background: transparent;
     color: #4ade80;
-}
-
-.master-btn {
-    width: 100%;
+    border: 1px solid #4ade80;
+    padding: 15px;
+    border-radius: 4px;
+    cursor: pointer;
     margin-top: 20px;
-    display: block;
+    width: 100%;
+    font-weight: bold;
 }
 
-/* =========================================
-   POPUP MODAL (HIDDEN BY DEFAULT)
-   ========================================= */
 .modal {
-    display: none; /* This fixes the broken layout in your screenshot! */
+    display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(11, 17, 32, 0.9);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
+    background: rgba(0,0,0,0.8);
     overflow-y: auto;
 }
 
 .modal-content {
-    background-color: #0b1120;
+    background: #0f172a;
     margin: 5% auto;
     padding: 30px;
     width: 90%;
-    max-width: 700px;
+    max-width: 600px;
     border-radius: 8px;
-    border: 1px solid #1e293b;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    border: 1px solid #334155;
 }
 
 .close-btn {
-    color: #64748b;
+    color: #94a3b8;
     float: right;
     font-size: 28px;
-    font-weight: bold;
     cursor: pointer;
 }
-
-.close-btn:hover { color: #f8fafc; }
 
 #modal-title {
-    color: #f8fafc;
-    margin-bottom: 20px;
-    font-size: 24px;
-    letter-spacing: 2px;
-}
-
-/* =========================================
-   SEARCH & FILTER CONTROLS (NEW)
-   ========================================= */
-.controls-container {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-    background: #0f172a;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #1e293b;
-}
-
-#search-bar {
-    flex: 1;
-    padding: 12px 15px;
-    background: #0b1120;
-    border: 1px solid #334155;
-    color: #f8fafc;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-#search-bar:focus {
-    border-color: #4ade80;
-    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
-}
-
-.filter-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.filter-btn {
-    background: #0b1120;
-    color: #94a3b8;
-    border: 1px solid #334155;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 12px;
-    transition: all 0.3s;
-}
-
-.filter-btn:hover {
-    color: #f8fafc;
-    border-color: #94a3b8;
-}
-
-.filter-btn.active {
-    border-color: #4ade80;
     color: #4ade80;
-    background: rgba(74, 222, 128, 0.05);
+    margin-bottom: 20px;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 10px;
 }
 
-/* =========================================
-   SUBJECT CARDS
-   ========================================= */
 .subject-card {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #1e293b;
+    border: 1px solid #334155;
     border-radius: 6px;
     padding: 20px;
     margin-bottom: 15px;
-    transition: transform 0.2s;
-}
-
-.subject-card:hover {
-    border-color: #334155;
-    transform: translateY(-2px);
 }
 
 .subject-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 15px;
-    border-bottom: 1px solid #1e293b;
-    padding-bottom: 10px;
-}
-
-.subject-header h3 {
-    color: #f8fafc;
-    font-size: 1.1rem;
 }
 
 .credit-badge {
-    background: #1e293b;
-    color: #94a3b8;
+    background: #0f172a;
+    color: #4ade80;
     padding: 4px 10px;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 0.8rem;
-    font-weight: bold;
 }
 
 .resource-links {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;
 }
 
 .resource-btn {
-    background: #0b1120;
-    color: #4ade80;
-    padding: 10px 15px;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 10px;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 0.9rem;
     flex: 1;
     text-align: center;
-    border: 1px solid #1e293b;
-    transition: 0.3s;
-    font-weight: bold;
+    border: 1px solid #334155;
 }
 
-.resource-btn:hover {
-    background: #4ade80;
-    color: #0b1120;
-    border-color: #4ade80;
-}
-
-/* =========================================
-   MOBILE RESPONSIVENESS
-   ========================================= */
 @media screen and (max-width: 600px) {
-    .navbar {
-        flex-direction: column !important;
-        padding: 15px 0 !important;
-    }
-    .nav-links {
-        margin-top: 15px;
-        width: 100%;
-        justify-content: center;
-    }
-    body, html {
-        overflow-x: hidden !important;
-        width: 100% !important;
-    }
-    .hero-title {
-        font-size: 3.5rem !important; 
-    }
     .resource-grid {
-        display: flex;
+        grid-template-columns: 1fr;
+    }
+    .resource-links {
         flex-direction: column;
-    }
-    .controls-container {
-        flex-direction: column;
-    }
-    .filter-buttons {
-        width: 100%;
-        justify-content: space-between;
-    }
-    .filter-btn {
-        flex: 1;
-        padding: 10px 5px;
     }
     .subject-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-    }
-    .resource-links {
-        flex-direction: column;
     }
 }
