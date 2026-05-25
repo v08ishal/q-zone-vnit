@@ -1,8 +1,8 @@
 let courseData = {};
-let currentSubjects = []; // Holds data for the currently open semester
-let currentFilter = 'All'; // Tracks which button is active (All, Theory, Lab)
+let currentSubjects = []; 
+let currentFilter = 'All'; 
 
-// 1. Fetch the data from your JSON file
+// Fetch the ECE database
 fetch('data.json')
     .then(response => response.json())
     .then(data => {
@@ -10,7 +10,7 @@ fetch('data.json')
     })
     .catch(error => console.error('Error loading database:', error));
 
-// 2. Open the Modal and Load Data
+// Open the Modal and Load Data
 function loadSemester(semesterName) {
     const modalTitle = document.getElementById('modal-title');
     
@@ -26,25 +26,24 @@ function loadSemester(semesterName) {
         renderSubjects(); // Draw the cards
     } else {
         currentSubjects = [];
-        document.getElementById('subject-container').innerHTML = '<p style="color: #94a3b8;">Content for this semester is currently unavailable.</p>';
+        document.getElementById('subject-container').innerHTML = '<p style="color: #94a3b8; text-align: center; padding: 20px;">Content for this semester is currently unavailable.</p>';
     }
 
     // Show the modal
     document.getElementById('semester-modal').style.display = 'block';
 }
 
-// 3. Change Filter State (Triggered by ALL, THEORY, LABS buttons)
+// Change Filter State (Triggered by ALL, THEORY, LABS buttons)
 function setFilter(type) {
     currentFilter = type;
     updateFilterButtons();
     renderSubjects(); // Redraw cards based on new filter
 }
 
-// 4. Update the Green Active Button
+// Update the Green Active Button visually
 function updateFilterButtons() {
     const buttons = document.querySelectorAll('.filter-btn');
     buttons.forEach(btn => {
-        // Match button text to current filter
         if (btn.innerText.toUpperCase() === currentFilter.toUpperCase() ||
            (btn.innerText.toUpperCase() === 'LABS' && currentFilter === 'Lab')) {
             btn.classList.add('active');
@@ -54,12 +53,12 @@ function updateFilterButtons() {
     });
 }
 
-// 5. Triggered every time a user types in the search bar
+// Triggered every time a user types in the search bar
 function filterData() {
     renderSubjects();
 }
 
-// 6. The Master Rendering Engine (Draws the cards based on filters)
+// The Rendering Engine (Draws the cards based on filters & search)
 function renderSubjects() {
     const container = document.getElementById('subject-container');
     const searchQuery = document.getElementById('search-bar').value.toLowerCase();
@@ -67,28 +66,27 @@ function renderSubjects() {
 
     // Filter the subjects array
     let filtered = currentSubjects.filter(subject => {
-        // Check if it matches the Category Button (Theory/Lab)
         let matchesType = (currentFilter === 'All') || (subject.type === currentFilter);
-        
-        // Check if it matches the Search Bar text
         let matchesSearch = subject.name.toLowerCase().includes(searchQuery);
-
         return matchesType && matchesSearch;
     });
 
-    // If nothing matches, show a message
+    // If nothing matches
     if (filtered.length === 0) {
-        container.innerHTML = '<p style="color: #94a3b8;">No subjects match your search.</p>';
+        container.innerHTML = '<p style="color: #94a3b8; text-align: center; padding: 20px;">No subjects match your search.</p>';
         return;
     }
 
     // Draw the filtered cards
     filtered.forEach(subject => {
+        // Format the badge text (e.g., "TH | 4 Credits")
+        let badgeType = subject.type === "Theory" ? "TH" : "PR";
+        
         let cardHTML = `
             <div class="subject-card">
                 <div class="subject-header">
                     <h3>${subject.name}</h3>
-                    <span class="credit-badge">${subject.credits} Credits | ${subject.type}</span>
+                    <span class="credit-badge">${badgeType} | ${subject.credits} Credits</span>
                 </div>
                 <div class="resource-links">
         `;
@@ -96,8 +94,8 @@ function renderSubjects() {
         if (subject.type === "Theory") {
             cardHTML += `
                 <a href="${subject.notesLink}" target="_blank" class="resource-btn">📝 Notes</a>
-                <a href="${subject.pyqLink}" target="_blank" class="resource-btn">📄 PYQs</a>
-                <a href="${subject.assignmentLink}" target="_blank" class="resource-btn">📋 Assign</a>
+                <a href="${subject.pyqLink}" target="_blank" class="resource-btn">🎯 PYQs</a>
+                <a href="${subject.assignmentLink}" target="_blank" class="resource-btn">✍️ Assignments</a>
             `;
         } else if (subject.type === "Lab") {
             cardHTML += `
@@ -111,12 +109,12 @@ function renderSubjects() {
     });
 }
 
-// 7. Close the Modal
+// Close the Modal
 function closeModal() {
     document.getElementById('semester-modal').style.display = 'none';
 }
 
-// 8. Close the modal if user clicks outside the box
+// Close the modal if user clicks the dark background outside the box
 window.onclick = function(event) {
     let modal = document.getElementById('semester-modal');
     if (event.target == modal) {
