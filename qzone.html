@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Q-ZONE | VNIT ECE Resource Portal</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --g1:#00ff88;--g2:#00cc66;--g3:#008844;
+  --dark:#050e08;--dark2:#0a1a0f;--dark3:#0d2015;
+  --card:#0a1a0f;--border:rgba(0,255,136,0.18);
+  --border-b:rgba(0,255,136,0.45);--text:#e8f5ee;
+  --muted:rgba(200,240,215,0.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);min-height:100vh}
+a{color:var(--g1);text-decoration:none}
+
+/* ── NAV ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:54px;background:var(--dark2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer}
+.brand-ico{width:36px;height:36px;border-radius:9px;background:var(--dark3);border:1px solid var(--border-b);display:flex;align-items:center;justify-content:center}
+.brand-ico i{color:var(--g1);font-size:18px}
+.brand-name{font-family:'Orbitron',monospace;font-size:19px;font-weight:900;color:var(--g1);letter-spacing:3px}
+.brand-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-top:1px}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nl{padding:5px 14px;font-size:12px;border-radius:20px;border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.nl:hover{border-color:var(--border);color:var(--text)}
+.nl.active{border-color:var(--border-b);color:var(--g1);background:rgba(0,255,136,0.07)}
+.theme-btn{margin-left:8px;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--dark3);color:var(--g1);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+
+/* ── PAGES ── */
+.page{display:none}.page.show{display:block}
+
+/* ── HERO ── */
+.hero{padding:32px 24px 24px;background:var(--dark2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,255,136,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.05) 1px,transparent 1px);background-size:28px 28px}
+.hero-dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(0,255,136,0.1) 1px,transparent 1px);background-size:56px 56px;background-position:14px 14px}
+.hero-c{position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;border-radius:20px;margin-bottom:12px;border:1px solid var(--border-b);background:rgba(0,255,136,0.08);font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--g1);letter-spacing:1.5px}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--g1);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-family:'Orbitron',monospace;font-size:36px;font-weight:900;color:var(--g1);letter-spacing:6px;line-height:1;margin-bottom:6px}
+.hero-sub{font-size:12px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:2px;margin-bottom:18px}
+.hero-stats{display:flex;gap:26px}
+.hstat-n{font-family:'Orbitron',monospace;font-size:19px;font-weight:700;color:var(--g1)}
+.hstat-l{font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px;font-family:'Share Tech Mono',monospace}
+
+/* ── SEARCH BAR ── */
+.search-bar{padding:11px 24px;background:var(--dark2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.srch-wrap{flex:1;min-width:180px;display:flex;align-items:center;gap:8px;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:7px 12px}
+.srch-wrap i{color:var(--g3);font-size:15px}
+.srch-wrap input{background:transparent;border:none;outline:none;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;flex:1}
+.srch-wrap input::placeholder{color:var(--muted)}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{padding:5px 12px;font-size:10px;border-radius:20px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:.5px;transition:all .15s}
+.chip.on{border-color:var(--g1);color:var(--g1);background:rgba(0,255,136,0.1)}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:190px 1fr;min-height:calc(100vh - 54px - 60px - 65px)}
+
+/* ── SIDEBAR ── */
+.sidebar{background:var(--dark2);border-right:1px solid var(--border);padding:18px 0;overflow-y:auto}
+.sb-sec{margin-bottom:20px}
+.sb-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--g3);padding:0 15px;margin-bottom:6px}
+.sb-btn{display:flex;align-items:center;gap:8px;width:100%;padding:8px 15px;background:transparent;border:none;color:var(--muted);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;text-align:left;transition:all .12s;border-left:2px solid transparent}
+.sb-btn:hover{color:var(--text);background:rgba(0,255,136,0.04)}
+.sb-btn.active{color:var(--g1);border-left-color:var(--g1);background:rgba(0,255,136,0.07);font-weight:500}
+.sb-btn i{font-size:14px}
+.sb-divider{height:1px;background:var(--border);margin:8px 15px}
+
+/* ── MAIN CONTENT ── */
+.main{padding:18px 20px;background:var(--dark)}
+.sem-info-bar{background:var(--dark2);border:1px solid var(--border);border-radius:9px;padding:10px 15px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sit{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--g1);letter-spacing:1px}
+.sem-creds{display:flex;gap:16px}
+.sc-item{text-align:center}
+.sc-n{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--g1)}
+.sc-l{font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;margin-top:1px}
+
+.tabs-row{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:14px}
+.tab-btn{padding:7px 14px;font-size:11px;border:none;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:4px;transition:all .12s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--g1);border-bottom-color:var(--g1);font-weight:500}
+
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sec-ttl{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text);letter-spacing:1px}
+.cnt-badge{padding:2px 8px;border-radius:10px;font-size:9px;background:rgba(0,255,136,0.1);color:var(--g2);border:1px solid var(--border);font-family:'Share Tech Mono',monospace}
+
+/* ── CARDS ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.resource-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:13px 12px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.resource-card:hover{border-color:var(--border-b);background:#0e2018;transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,255,136,0.08)}
+.rc-line{position:absolute;top:0;left:0;right:0;height:2px}
+.lc-notes{background:var(--g1)}.lc-pyq{background:#ffaa00}.lc-assign{background:#00aaff}.lc-sol{background:#ff6688}
+.rc-icon{font-size:19px;margin:4px 0 8px}
+.ic-notes{color:var(--g1)}.ic-pyq{color:#ffaa00}.ic-assign{color:#00aaff}.ic-sol{color:#ff6688}
+.rc-code{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--g3);margin-bottom:3px;letter-spacing:.5px}
+.rc-title{font-size:11px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.35}
+.rc-meta{font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace}
+.rc-tag{display:inline-block;margin-top:9px;padding:2px 7px;border-radius:10px;font-size:8px;font-family:'Share Tech Mono',monospace;letter-spacing:.8px;border:1px solid}
+.rt-notes{color:var(--g2);border-color:var(--g3);background:rgba(0,255,136,0.08)}
+.rt-pyq{color:#ffaa00;border-color:#885500;background:rgba(255,170,0,0.08)}
+.rt-assign{color:#00aaff;border-color:#005588;background:rgba(0,170,255,0.08)}
+.rt-sol{color:#ff6688;border-color:#882244;background:rgba(255,102,136,0.08)}
+.rc-drive-btn{display:block;margin-top:8px;padding:4px 0;font-size:9px;font-family:'Share Tech Mono',monospace;color:var(--g2);border:1px solid var(--border);border-radius:5px;text-align:center;transition:all .12s}
+.rc-drive-btn:hover{border-color:var(--g2);background:rgba(0,204,102,0.08)}
+.pending-badge{position:absolute;top:8px;right:8px;padding:1px 6px;border-radius:8px;font-size:8px;font-family:'Share Tech Mono',monospace;background:rgba(255,170,0,0.15);color:#ffaa00;border:1px solid #885500}
+
+/* ── UPLOAD PAGE ── */
+.upload-page{max-width:620px;margin:32px auto;padding:0 20px}
+.up-header{font-family:'Orbitron',monospace;font-size:18px;font-weight:700;color:var(--g1);letter-spacing:2px;margin-bottom:4px}
+.up-sub{font-size:12px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:1px;margin-bottom:28px}
+.form-section{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:22px}
+.form-title{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--g3);letter-spacing:2px;margin-bottom:16px}
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:11px;font-family:'Share Tech Mono',monospace;color:var(--muted);letter-spacing:.8px;margin-bottom:6px}
+.form-input,.form-select,.form-textarea{width:100%;padding:9px 12px;background:var(--dark3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border-color .15s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--border-b)}
+.form-select option{background:var(--dark2);color:var(--text)}
+.form-textarea{height:80px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.drive-hint{margin-top:6px;font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;line-height:1.6}
+.drive-hint a{color:var(--g2)}
+.submit-btn{width:100%;padding:11px;background:rgba(0,255,136,0.12);border:1px solid var(--border-b);border-radius:9px;color:var(--g1);font-size:13px;font-family:'Orbitron',monospace;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .15s;margin-top:8px}
+.submit-btn:hover{background:rgba(0,255,136,0.2);box-shadow:0 0 20px rgba(0,255,136,0.1)}
+.submit-success{display:none;background:rgba(0,255,136,0.08);border:1px solid var(--border-b);border-radius:10px;padding:18px;text-align:center;margin-top:16px}
+.submit-success i{font-size:28px;color:var(--g1);margin-bottom:8px;display:block}
+.submit-success p{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--g2);letter-spacing:.5px;line-height:1.6}
+
+/* ── NOTICE PAGE ── */
+.notice-page,.about-page,.grades-page{max-width:700px;margin:28px auto;padding:0 20px}
+.pg-title{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--g1);letter-spacing:2px;margin-bottom:16px}
+.notice-item{padding:10px 14px;border-radius:8px;background:rgba(0,255,136,0.04);border:1px solid var(--border);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px}
+.nd{width:7px;height:7px;border-radius:50%;background:var(--g1);margin-top:3px;flex-shrink:0}
+.notice-item.warn .nd{background:#ffaa00}
+.notice-item.info .nd{background:#00aaff}
+.nt{flex:1;font-size:12px;line-height:1.6}
+.ndate{font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;margin-top:3px}
+
+/* ── ABOUT PAGE ── */
+.about-text{font-size:12px;color:var(--text);line-height:1.8;margin-bottom:16px}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.acard{background:var(--dark2);border:1px solid var(--border);border-radius:9px;padding:10px 13px}
+.acard-l{font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace;margin-bottom:4px}
+.acard-v{color:var(--g1);font-weight:600;font-size:13px}
+.coe-chips{display:flex;gap:6px;flex-wrap:wrap}
+.coe-chip{padding:4px 12px;border-radius:20px;font-size:10px;font-family:'Share Tech Mono',monospace;border:1px solid var(--border-b);color:var(--g1);background:rgba(0,255,136,0.07)}
+
+/* ── GRADES PAGE ── */
+.grades-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grade-table{width:100%;border-collapse:collapse;font-size:12px}
+.grade-table th{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--g3);letter-spacing:1.5px;padding:6px 10px;border-bottom:1px solid var(--border);text-align:left}
+.grade-table td{padding:6px 10px;border-bottom:1px solid rgba(0,255,136,0.07)}
+.grade-table tr:hover td{background:rgba(0,255,136,0.04)}
+.gp{color:var(--g1);font-weight:700;font-family:'Share Tech Mono',monospace}
+.formula-box{background:var(--dark2);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:11px;line-height:2}
+.f-label{color:var(--g2);font-family:'Share Tech Mono',monospace}
+
+/* ── ADMIN PAGE ── */
+.admin-page{max-width:860px;margin:28px auto;padding:0 20px}
+.admin-login{max-width:360px;margin:60px auto;background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:28px}
+.admin-login-title{font-family:'Orbitron',monospace;font-size:16px;color:var(--g1);letter-spacing:2px;text-align:center;margin-bottom:4px}
+.admin-login-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin-bottom:22px;letter-spacing:1px}
+.login-err{color:#ff6688;font-size:11px;font-family:'Share Tech Mono',monospace;text-align:center;margin-top:10px;display:none}
+.admin-panel{display:none}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.admin-title{font-family:'Orbitron',monospace;font-size:16px;color:var(--g1);letter-spacing:2px}
+.logout-btn{padding:5px 14px;background:transparent;border:1px solid var(--border);border-radius:20px;color:var(--muted);font-size:11px;font-family:'Share Tech Mono',monospace;cursor:pointer}
+.logout-btn:hover{border-color:#ff6688;color:#ff6688}
+.pending-section{margin-bottom:28px}
+.ps-title{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--g3);letter-spacing:2px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ps-count{padding:2px 7px;border-radius:8px;background:rgba(255,170,0,0.15);color:#ffaa00;border:1px solid #885500}
+.admin-card{background:var(--dark2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.ac-info{flex:1;min-width:200px}
+.ac-code{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--g3);margin-bottom:4px}
+.ac-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.ac-meta{font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;line-height:1.6}
+.ac-link{font-size:10px;color:var(--g2);margin-top:4px;display:block;word-break:break-all}
+.ac-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.approve-btn{padding:6px 14px;background:rgba(0,255,136,0.12);border:1px solid var(--border-b);border-radius:7px;color:var(--g1);font-size:11px;font-family:'Share Tech Mono',monospace;cursor:pointer;transition:all .15s}
+.approve-btn:hover{background:rgba(0,255,136,0.22)}
+.reject-btn{padding:6px 14px;background:rgba(255,102,136,0.08);border:1px solid #882244;border-radius:7px;color:#ff6688;font-size:11px;font-family:'Share Tech Mono',monospace;cursor:pointer;transition:all .15s}
+.reject-btn:hover{background:rgba(255,102,136,0.18)}
+.no-pending{text-align:center;padding:28px;color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px;border:1px dashed var(--border);border-radius:10px}
+.approved-section{}
+.approved-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.al-item{background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;position:relative}
+.al-item-code{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--g3);margin-bottom:3px}
+.al-item-name{font-size:11px;font-weight:600;color:var(--text);margin-bottom:2px}
+.al-item-type{font-size:9px;color:var(--muted);font-family:'Share Tech Mono',monospace}
+.al-del{position:absolute;top:8px;right:8px;background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:13px}
+.al-del:hover{color:#ff6688}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty-state i{font-size:36px;color:var(--g3);margin-bottom:12px;display:block}
+.empty-state p{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.6}
+
+/* ── LIGHT MODE ── */
+body.light{--dark:#f0f7f3;--dark2:#e2efe8;--dark3:#d0e8d8;--card:#ffffff;--border:rgba(0,136,68,0.22);--border-b:rgba(0,136,68,0.55);--text:#0d2015;--muted:rgba(20,60,35,0.55)}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--dark2);border:1px solid var(--border-b);border-radius:14px;padding:28px;max-width:480px;width:90%;position:relative}
+.modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
+.modal-close:hover{color:#ff6688}
+.modal-title{font-family:'Orbitron',monospace;font-size:14px;color:var(--g1);letter-spacing:2px;margin-bottom:6px}
+.modal-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;margin-bottom:20px}
+
+@media(max-width:700px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .hero-title{font-size:26px}
+  .about-grid{grid-template-columns:1fr 1fr}
+  .grades-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="brand" onclick="showPage('home')">
+    <div class="brand-ico"><i class="ti ti-cpu"></i></div>
+    <div>
+      <div class="brand-name">Q-ZONE</div>
+      <div class="brand-sub">VNIT NAGPUR · ECE DEPARTMENT</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nl active" onclick="showPage('home',this)">Home</button>
+    <button class="nl" onclick="showPage('upload',this)">Upload</button>
+    <button class="nl" onclick="showPage('notice',this)">Notices</button>
+    <button class="nl" onclick="showPage('grades',this)">Grading</button>
+    <button class="nl" onclick="showPage('about',this)">About</button>
+    <button class="nl" onclick="showPage('admin',this)">Admin</button>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme"><i class="ti ti-sun" id="ticon"></i></button>
+  </div>
+</nav>
+
+<!-- ═══════════ HOME PAGE ═══════════ -->
+<div id="page-home" class="page show">
+  <div class="hero">
+    <div class="hero-bg"></div><div class="hero-dots"></div>
+    <div class="hero-c">
+      <div class="hero-badge"><div class="pulse"></div>VNIT NAGPUR · ECE · LIVE</div>
+      <div class="hero-title">Q-ZONE</div>
+      <div class="hero-sub">Notes. PYQs. Solutions. All here.</div>
+      <div class="hero-stats">
+        <div><div class="hstat-n">8</div><div class="hstat-l">Semesters</div></div>
+        <div><div class="hstat-n">160</div><div class="hstat-l">Min Credits</div></div>
+        <div><div class="hstat-n">43+</div><div class="hstat-l">Electives</div></div>
+        <div><div class="hstat-n">116</div><div class="hstat-l">Intake</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <div class="srch-wrap">
+      <i class="ti ti-search"></i>
+      <input type="text" id="searchbox" placeholder="Search course name, code, topic…" oninput="filterSearch(this.value)"/>
+    </div>
+    <div class="chips">
+      <button class="chip on" onclick="setChip(this,'all')">ALL</button>
+      <button class="chip" onclick="setChip(this,'notes')">NOTES</button>
+      <button class="chip" onclick="setChip(this,'pyq')">PYQ</button>
+      <button class="chip" onclick="setChip(this,'assign')">ASSIGNMENTS</button>
+      <button class="chip" onclick="setChip(this,'sol')">SOLUTIONS</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="sb-sec">
+        <div class="sb-lbl">// SEMESTER</div>
+        <button class="sb-btn active" onclick="setSem(this,1)"><i class="ti ti-hash"></i>Semester 1</button>
+        <button class="sb-btn" onclick="setSem(this,2)"><i class="ti ti-hash"></i>Semester 2</button>
+        <button class="sb-btn" onclick="setSem(this,3)"><i class="ti ti-hash"></i>Semester 3</button>
+        <button class="sb-btn" onclick="setSem(this,4)"><i class="ti ti-hash"></i>Semester 4</button>
+        <button class="sb-btn" onclick="setSem(this,5)"><i class="ti ti-hash"></i>Semester 5</button>
+        <button class="sb-btn" onclick="setSem(this,6)"><i class="ti ti-hash"></i>Semester 6</button>
+        <button class="sb-btn" onclick="setSem(this,7)"><i class="ti ti-hash"></i>Semester 7</button>
+        <button class="sb-btn" onclick="setSem(this,8)"><i class="ti ti-hash"></i>Semester 8</button>
+      </div>
+      <div class="sb-divider"></div>
+      <div class="sb-sec">
+        <div class="sb-lbl">// QUICK ACCESS</div>
+        <button class="sb-btn"><i class="ti ti-pin"></i>Pinned</button>
+        <button class="sb-btn"><i class="ti ti-clock"></i>Recent</button>
+        <button class="sb-btn"><i class="ti ti-star"></i>Favourites</button>
+        <button class="sb-btn"><i class="ti ti-download"></i>Downloads</button>
+      </div>
+      <div class="sb-divider"></div>
+      <div class="sb-sec">
+        <div class="sb-lbl">// ELECTIVES</div>
+        <button class="sb-btn" onclick="setSem(this,'iot')"><i class="ti ti-circle-dot"></i>IoT Minor</button>
+        <button class="sb-btn" onclick="setSem(this,'de')"><i class="ti ti-list"></i>Dept. Electives</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="sem-info-bar" id="sem-info-bar"></div>
+      <div class="tabs-row">
+        <button class="tab-btn active" onclick="setTab(this,'all')"><i class="ti ti-layout-grid"></i>All</button>
+        <button class="tab-btn" onclick="setTab(this,'notes')"><i class="ti ti-notebook"></i>Notes</button>
+        <button class="tab-btn" onclick="setTab(this,'pyq')"><i class="ti ti-clock-hour-4"></i>PYQs</button>
+        <button class="tab-btn" onclick="setTab(this,'assign')"><i class="ti ti-clipboard-list"></i>Assignments</button>
+        <button class="tab-btn" onclick="setTab(this,'sol')"><i class="ti ti-bulb"></i>Solutions</button>
+      </div>
+      <div class="sec-hdr">
+        <span class="sec-ttl" id="sec-label">SEM_01 // ALL_RESOURCES</span>
+        <span class="cnt-badge" id="sec-cnt">0 files</span>
+      </div>
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ UPLOAD PAGE ═══════════ -->
+<div id="page-upload" class="page">
+  <div class="upload-page">
+    <div class="up-header">SUBMIT RESOURCE</div>
+    <div class="up-sub">// share your notes, PYQs, assignments or solutions</div>
+    <div class="form-section">
+      <div class="form-title">// RESOURCE DETAILS</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">SEMESTER</label>
+          <select class="form-select" id="up-sem">
+            <option value="">Select semester</option>
+            <option>Semester 1</option><option>Semester 2</option>
+            <option>Semester 3</option><option>Semester 4</option>
+            <option>Semester 5</option><option>Semester 6</option>
+            <option>Semester 7</option><option>Semester 8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">RESOURCE TYPE</label>
+          <select class="form-select" id="up-type">
+            <option value="">Select type</option>
+            <option value="notes">Notes</option>
+            <option value="pyq">PYQ (Past Year Questions)</option>
+            <option value="assign">Assignment</option>
+            <option value="sol">Solution</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">COURSE NAME</label>
+        <input type="text" class="form-input" id="up-course" placeholder="e.g. Digital Signal Processing"/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">COURSE CODE</label>
+          <input type="text" class="form-input" id="up-code" placeholder="e.g. ECL304"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">YEAR (for PYQ)</label>
+          <input type="text" class="form-input" id="up-year" placeholder="e.g. 2023"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">GOOGLE DRIVE LINK</label>
+        <input type="url" class="form-input" id="up-link" placeholder="https://drive.google.com/file/d/..."/>
+        <div class="drive-hint">
+          1. Upload your file to Google Drive<br>
+          2. Right-click → Share → "Anyone with the link can view"<br>
+          3. Copy link and paste above<br>
+          <a href="https://drive.google.com" target="_blank">→ Open Google Drive</a>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">YOUR NAME (optional)</label>
+        <input type="text" class="form-input" id="up-name" placeholder="e.g. Rahul Sharma (3rd Year ECE)"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">DESCRIPTION (optional)</label>
+        <textarea class="form-textarea" id="up-desc" placeholder="Brief description, which units covered, exam year, etc."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitResource()"><i class="ti ti-send"></i> SUBMIT FOR APPROVAL</button>
+      <div class="submit-success" id="submit-success">
+        <i class="ti ti-circle-check"></i>
+        <p>Submission received!<br>Your resource will appear on the site after admin approval.<br>Thank you for contributing to Q-ZONE.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ NOTICE PAGE ═══════════ -->
+<div id="page-notice" class="page">
+  <div class="notice-page">
+    <div class="pg-title">// NOTICE BOARD</div>
+    <div class="notice-item warn"><div class="nd"></div><div class="nt">End semester examinations — check academic calendar for exact dates.<div class="ndate">Academic Office</div></div></div>
+    <div class="notice-item info"><div class="nd"></div><div class="nt">Minor in IoT registration open for Sem 3 students. Courses: ECL217 → ECL316 → ECL441 → ECD404. Total 16 credits.<div class="ndate">ECE Department</div></div></div>
+    <div class="notice-item"><div class="nd"></div><div class="nt">Project Phase I (ECD401) — 3 credits, Sem 7. Form teams and register with advisor by week 2.<div class="ndate">Project Committee</div></div></div>
+    <div class="notice-item warn"><div class="nd"></div><div class="nt">Minimum 75% attendance mandatory. W grade awarded below threshold — no end-sem exam eligibility.<div class="ndate">Attendance Policy</div></div></div>
+    <div class="notice-item info"><div class="nd"></div><div class="nt">Industry Internship (ECL448/ECL453) available in Sem 7/8 as 6-credit elective. Apply via placement cell.<div class="ndate">Training & Placement</div></div></div>
+    <div class="notice-item"><div class="nd"></div><div class="nt">New Elective ECL452 (Emerging Comm. Technologies: 5G, IoT, SDN, Blockchain) added for Sem 7/8.<div class="ndate">ECE Dept.</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════════ GRADES PAGE ═══════════ -->
+<div id="page-grades" class="page">
+  <div class="grades-page">
+    <div class="pg-title">// VNIT GRADING SYSTEM</div>
+    <div class="grades-grid">
+      <table class="grade-table">
+        <thead><tr><th>GRADE</th><th>POINTS</th><th>DESCRIPTION</th></tr></thead>
+        <tbody>
+          <tr><td>AA</td><td class="gp">10</td><td>Outstanding</td></tr>
+          <tr><td>AB</td><td class="gp">9</td><td>Excellent</td></tr>
+          <tr><td>BB</td><td class="gp">8</td><td>Very Good</td></tr>
+          <tr><td>BC</td><td class="gp">7</td><td>Good</td></tr>
+          <tr><td>CC</td><td class="gp">6</td><td>Average</td></tr>
+          <tr><td>CD</td><td class="gp">5</td><td>Below Average</td></tr>
+          <tr><td>DD</td><td class="gp">4</td><td>Marginal Pass</td></tr>
+          <tr><td>FF</td><td class="gp">0</td><td>Fail / Absent</td></tr>
+          <tr><td>NP</td><td class="gp">–</td><td>Audit Pass</td></tr>
+          <tr><td>W</td><td class="gp">–</td><td>Low Attendance</td></tr>
+        </tbody>
+      </table>
+      <div class="formula-box">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--g3);letter-spacing:2px;margin-bottom:12px">// FORMULAE</div>
+        <div style="margin-bottom:8px"><span class="f-label">SGPA</span> = EGP ÷ Σ(credits in sem)</div>
+        <div style="margin-bottom:8px"><span class="f-label">CGPA</span> = Total EGP ÷ Σ(all passed credits)</div>
+        <div style="margin-bottom:8px"><span class="f-label">EGP</span> = Σ(course credits × grade points)</div>
+        <div style="margin-bottom:16px;font-size:10px;color:var(--muted)">CGPA rounded to 2 decimal places</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--g3);letter-spacing:2px;margin-bottom:12px">// CREDIT FORMULA (L-T-P)</div>
+        <div>1 lecture hr/week = <span class="f-label">1 credit</span></div>
+        <div>1 tutorial hr/week = <span class="f-label">1 credit</span></div>
+        <div>1 practical hr/week = <span class="f-label">0.5 credit</span></div>
+        <div style="margin-top:10px;padding:8px;background:rgba(0,255,136,0.06);border-radius:6px;font-size:11px">
+          Example: 3-0-2 (L-T-P)<br>= 3×1 + 0×1 + 2×0.5 = <span style="color:var(--g1);font-weight:600">4 credits</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ABOUT PAGE ═══════════ -->
+<div id="page-about" class="page">
+  <div class="about-page">
+    <div class="pg-title">// ABOUT ECE DEPT — VNIT NAGPUR</div>
+    <div class="about-text">Established in 1984, the ECE Department at VNIT Nagpur has grown to a B.Tech intake of 116. Both UG and PG programs are NBA-accredited for six years. Research areas include 5G/6G, RF & Antennas, Signal Processing, AI/ML, VLSI, IoT, and Biomedical Engineering. The department has produced GATE/CAT toppers and Institute Visvesvaraya Medalists. Alumni are highly placed with ~5% being entrepreneurs.</div>
+    <div class="about-grid">
+      <div class="acard"><div class="acard-l">Avg. Faculty Experience</div><div class="acard-v">15 years</div></div>
+      <div class="acard"><div class="acard-l">Professor Experience</div><div class="acard-v">25–35 yrs</div></div>
+      <div class="acard"><div class="acard-l">Alumni Entrepreneurs</div><div class="acard-v">~5%</div></div>
+      <div class="acard"><div class="acard-l">Programs Offered</div><div class="acard-v">B.Tech, M.Tech, PhD</div></div>
+      <div class="acard"><div class="acard-l">Min. Credits (B.Tech)</div><div class="acard-v">160 credits</div></div>
+      <div class="acard"><div class="acard-l">With Minor (IoT)</div><div class="acard-v">176 credits</div></div>
+    </div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--g3);letter-spacing:2px;margin-bottom:10px">// CENTRES OF EXCELLENCE</div>
+    <div class="coe-chips">
+      <span class="coe-chip">Embedded Systems</span>
+      <span class="coe-chip">Centre of AI</span>
+      <span class="coe-chip">5G Lab</span>
+      <span class="coe-chip">EMC-EMI Centre</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ADMIN PAGE ═══════════ -->
+<div id="page-admin" class="page">
+  <div class="admin-page">
+    <!-- Login -->
+    <div id="admin-login" class="admin-login">
+      <div class="admin-login-title">ADMIN ACCESS</div>
+      <div class="admin-login-sub">// enter password to continue</div>
+      <div class="form-group">
+        <label class="form-label">PASSWORD</label>
+        <input type="password" class="form-input" id="admin-pw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()"/>
+      </div>
+      <button class="submit-btn" onclick="adminLogin()">LOGIN</button>
+      <div class="login-err" id="login-err">✗ Incorrect password</div>
+    </div>
+    <!-- Panel -->
+    <div id="admin-panel" class="admin-panel">
+      <div class="admin-header">
+        <div class="admin-title">ADMIN PANEL</div>
+        <button class="logout-btn" onclick="adminLogout()"><i class="ti ti-logout"></i> Logout</button>
+      </div>
+      <div class="pending-section">
+        <div class="ps-title">PENDING APPROVALS <span class="ps-count" id="pending-count">0</span></div>
+        <div id="pending-list"></div>
+      </div>
+      <div class="approved-section">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--g3);letter-spacing:2px;margin-bottom:12px">APPROVED RESOURCES</div>
+        <div class="approved-list" id="approved-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resource View Modal -->
+<div class="modal-overlay" id="res-modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('res-modal').classList.remove('show')"><i class="ti ti-x"></i></button>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub" id="modal-code"></div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.7" id="modal-desc"></div>
+    <a id="modal-link" href="#" target="_blank" class="submit-btn" style="display:block;text-align:center;text-decoration:none">
+      <i class="ti ti-brand-google-drive"></i> OPEN IN GOOGLE DRIVE
+    </a>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const ADMIN_PASSWORD = "qzone2025";
+
+const semData={
+  1:[{code:'MAL101',name:'Mathematics I',cr:'4',type:'BS'},{code:'PHL102',name:'Physics for ECE',cr:'4',type:'BS'},{code:'CSL101',name:'Computer Programming',cr:'4',type:'ES'},{code:'EEL103',name:'Electrical Engineering',cr:'4',type:'ES'},{code:'ENV101',name:'Environmental Studies',cr:'2',type:'IC'}],
+  2:[{code:'MALA102',name:'Mathematics II',cr:'4',type:'BS'},{code:'AMLA102',name:'Engineering Mechanics',cr:'3',type:'ES'},{code:'MEPA104',name:'CAD and Modelling',cr:'2',type:'ES'},{code:'HULA101',name:'English & Corporate Comm.',cr:'3',type:'HU'},{code:'ECLA102',name:'Electronic Circuits',cr:'5',type:'DC'},{code:'ECLA103',name:'Networks and Systems',cr:'3',type:'DC'}],
+  3:[{code:'ECL3xx',name:'Linear Algebra for ML',cr:'3',type:'DC'},{code:'ECL216',name:'Digital Circuits & Hardware Design',cr:'5',type:'DC'},{code:'ECL211',name:'Signals & Systems Analysis',cr:'4',type:'DC'},{code:'ECL305',name:'Electromagnetic Fields',cr:'4',type:'DC'},{code:'ECL308',name:'Analog Circuit Design',cr:'4',type:'DC'},{code:'ECL204',name:'Measurements & Instrumentation',cr:'4',type:'DC'}],
+  4:[{code:'ECL307',name:'Statistical Signal Processing',cr:'4',type:'DC'},{code:'ECL301',name:'Analog Communication',cr:'5',type:'DC'},{code:'ECL405',name:'Waveguides and Antennas',cr:'3',type:'DC'},{code:'ECL315',name:'Microprocessors & Microcontrollers',cr:'4',type:'DC'},{code:'ECL304',name:'Digital Signal Processing',cr:'4',type:'DC'},{code:'ECP307',name:'Electronics Product Engg. Workshop',cr:'1',type:'DC'}],
+  5:[{code:'ECL312',name:'Control Engineering',cr:'4',type:'DC'},{code:'ECL303',name:'Digital Communication',cr:'5',type:'DC'},{code:'ECL404',name:'RF and Microwave Engineering',cr:'4',type:'DC'},{code:'ECL317',name:'Integrated Circuit Design',cr:'4',type:'DC'}],
+  6:[{code:'ECD403',name:'Project Course (Audit)',cr:'0',type:'MNC'},{code:'DE/OC',name:'Dept. Electives / Open Course',cr:'21–27',type:'DE'}],
+  7:[{code:'ECD401',name:'Project Phase I',cr:'3',type:'DC'},{code:'ECL448',name:'Industry Internship (opt.)',cr:'6',type:'DE'},{code:'DE',name:'Dept. Elective (choice)',cr:'3–4',type:'DE'}],
+  8:[{code:'ECD402',name:'Project Phase II',cr:'3',type:'DC'},{code:'ECL453',name:'Industry Internship (opt.)',cr:'6',type:'DE'},{code:'DE',name:'Dept. Elective (choice)',cr:'3–4',type:'DE'}],
+  iot:[{code:'ECL217',name:'Concepts of Communication',cr:'4',type:'Minor'},{code:'ECL316',name:'Communication Networks for IoT',cr:'4',type:'Minor'},{code:'ECL441',name:'IoT Design',cr:'4',type:'Minor'},{code:'ECD404',name:'IoT-based Mini Project',cr:'4',type:'Minor'}],
+  de:[
+    {code:'ECL411',name:'Digital Image Processing',cr:'4',type:'DE'},{code:'ECL412',name:'Advanced DSP',cr:'4',type:'DE'},{code:'ECL443',name:'Machine Learning with Python',cr:'4',type:'DE'},{code:'ECL423',name:'Image Analysis & Computer Vision',cr:'4',type:'DE'},{code:'ECL429',name:'Communication Networks',cr:'4',type:'DE'},{code:'ECL430',name:'Biomedical Signal Processing',cr:'4',type:'DE'},{code:'ECL419',name:'Wireless Sensor Networks',cr:'4',type:'DE'},{code:'ECL447',name:'Embedded Systems for IoT',cr:'4',type:'DE'},{code:'ECL452',name:'Emerging Comm. Technologies',cr:'4',type:'DE'},{code:'ECL549',name:'Microwave Integrated Circuits',cr:'4',type:'DE'},{code:'ECL532',name:'Wavelets & Multimedia Applications',cr:'4',type:'DE'},{code:'ECL413',name:'Adaptive Signal Processing',cr:'4',type:'DE'},{code:'ECL424',name:'Optical Communication',cr:'4',type:'DE'},
+    {code:'ECL439',name:'Wireless Communications',cr:'3',type:'DE'},{code:'ECL437',name:'Fundamentals of Info. Theory',cr:'3',type:'DE'},{code:'ECL408',name:'Biomedical Engineering',cr:'3',type:'DE'},{code:'ECL311',name:'Automotive Electronics',cr:'3',type:'DE'},{code:'ECL407',name:'Radar Engineering',cr:'3',type:'DE'},{code:'ECL410',name:'Satellite Communication',cr:'3',type:'DE'},{code:'ECL420',name:'Smart Antennas',cr:'3',type:'DE'},{code:'ECL440',name:'Cellular Systems',cr:'3',type:'DE'},{code:'ECL446',name:'Quantum Computing & Comm.',cr:'3',type:'DE'},{code:'ECL450',name:'Medical Image Analysis',cr:'3',type:'DE'},{code:'CSL311',name:'Computer Architecture & Org.',cr:'3',type:'DE'},{code:'CSL312',name:'Concepts in Operating Systems',cr:'3',type:'DE'},{code:'ECL314',name:'Power Electronic Devices',cr:'3',type:'DE'},{code:'ECL436',name:'Optimal Systems',cr:'3',type:'DE'},{code:'ECL427',name:'Broadband Communication',cr:'3',type:'DE'},{code:'ECL414',name:'Electronic Product Design',cr:'3',type:'DE'},{code:'ECL417',name:'Multimedia Networks',cr:'3',type:'DE'},{code:'ECL418',name:'Network Planning & Management',cr:'3',type:'DE'},{code:'ECL421',name:'Advanced Sensors & Instrumentation',cr:'3',type:'DE'},{code:'MAL408',name:'Statistical Analysis & Queuing',cr:'3',type:'DE'},{code:'ECL409',name:'RF Circuit Design',cr:'3',type:'DE'},{code:'ECL4xx',name:'Multivariate Statistical Analysis',cr:'3',type:'DE'},{code:'ECL451',name:'Advanced Optimization Algorithms',cr:'3',type:'DE'},
+    {code:'IDL401',name:'MOOC1: Machine Learning',cr:'4',type:'DE'},{code:'IDL402',name:'MOOC2: Deep Learning',cr:'3',type:'DE'},{code:'IDL403',name:'MOOC3: Industry 4.0',cr:'3',type:'DE'},{code:'ECL449',name:'Independent Studies',cr:'2',type:'DE'}
+  ]
+};
+
+const semMeta={
+  1:{label:'Semester 1',total:'18',dc:'0',bs:'8',es:'8'},2:{label:'Semester 2',total:'20–23',dc:'8',bs:'4',es:'5'},
+  3:{label:'Semester 3',total:'24–27',dc:'24',bs:'0',es:'0'},4:{label:'Semester 4',total:'24–27',dc:'21',bs:'0',es:'0'},
+  5:{label:'Semester 5',total:'20–28',dc:'17',bs:'0',es:'0'},6:{label:'Semester 6',total:'21–27',dc:'0',bs:'0',es:'0'},
+  7:{label:'Semester 7',total:'7–30',dc:'3',bs:'0',es:'0'},8:{label:'Semester 8',total:'3–3',dc:'3',bs:'0',es:'0'},
+  iot:{label:'IoT Minor',total:'16',dc:'16',bs:'0',es:'0'},de:{label:'Dept. Electives',total:'3–4 each',dc:'42–48 total',bs:'0',es:'0'}
+};
+
+const types=['notes','pyq','assign','sol'];
+const tagLabel={notes:'NOTES',pyq:'PYQ',assign:'ASSIGN',sol:'SOLUTION'};
+const tagCls={notes:'rt-notes',pyq:'rt-pyq',assign:'rt-assign',sol:'rt-sol'};
+const lineCls={notes:'lc-notes',pyq:'lc-pyq',assign:'lc-assign',sol:'lc-sol'};
+const icoClass={notes:'ti-notebook',pyq:'ti-clock-hour-4',assign:'ti-clipboard-list',sol:'ti-bulb'};
+const icoColor={notes:'ic-notes',pyq:'ic-pyq',assign:'ic-assign',sol:'ic-sol'};
+const metaMap={notes:'Full notes · PDF',pyq:'Past year questions · PDF',assign:'Assignment set · PDF',sol:'Complete solutions · PDF'};
+
+let activeSem=1, activeTab='all', activeChip='all';
+let pendingResources = JSON.parse(localStorage.getItem('qzone_pending')||'[]');
+let approvedResources = JSON.parse(localStorage.getItem('qzone_approved')||'[]');
+
+function savePending(){ localStorage.setItem('qzone_pending', JSON.stringify(pendingResources)); }
+function saveApproved(){ localStorage.setItem('qzone_approved', JSON.stringify(approvedResources)); }
+
+function renderSemInfo(){
+  const m=semMeta[activeSem]||{};
+  document.getElementById('sem-info-bar').innerHTML=`
+    <div class="sit">${m.label||''}</div>
+    <div class="sem-creds">
+      <div class="sc-item"><div class="sc-n">${m.total||'–'}</div><div class="sc-l">Total Cr.</div></div>
+      <div class="sc-item"><div class="sc-n">${m.dc||'–'}</div><div class="sc-l">Core DC</div></div>
+      <div class="sc-item"><div class="sc-n">${m.bs||'–'}</div><div class="sc-l">Basic Sci.</div></div>
+      <div class="sc-item"><div class="sc-n">${m.es||'–'}</div><div class="sc-l">Engg. Sci.</div></div>
+    </div>`;
+}
+
+function renderCards(){
+  const courses=semData[activeSem]||[];
+  const showTypes=activeTab==='all'?types:[activeTab];
+  const fTypes=activeChip==='all'?showTypes:showTypes.filter(t=>t===activeChip);
+  
+  // Syllabus cards
+  const syllabusPairs=[];
+  courses.forEach(c=>fTypes.forEach(t=>syllabusPairs.push({c,t,approved:false})));
+  
+  // Approved uploaded resources for this semester
+  const semLabel = typeof activeSem==='number' ? `Semester ${activeSem}` : (activeSem==='iot'?'IoT Minor':'Dept. Electives');
+  const uploadedCards = approvedResources.filter(r=>{
+    const semMatch = r.sem===semLabel || activeSem==='de' || activeSem==='iot';
+    const typeMatch = activeChip==='all' || r.type===activeChip;
+    const tabMatch = activeTab==='all' || r.type===activeTab;
+    return semMatch && typeMatch && tabMatch;
+  });
+
+  const grid=document.getElementById('cards-grid');
+  let html = syllabusPairs.map(({c,t})=>{
+    const uploaded = approvedResources.find(r=>r.code===c.code && r.type===t);
+    return `<div class="resource-card" data-name="${c.name.toLowerCase()}" data-code="${c.code.toLowerCase()}" onclick="${uploaded?`openModal('${c.code}','${c.name}','${t}','${uploaded.link}','${uploaded.desc||''}')`:''}">
+      <div class="rc-line ${lineCls[t]}"></div>
+      <div class="rc-icon ${icoColor[t]}"><i class="ti ${icoClass[t]}"></i></div>
+      <div class="rc-code">${c.code} · ${c.cr} cr</div>
+      <div class="rc-title">${c.name}</div>
+      <div class="rc-meta">${metaMap[t]}</div>
+      <span class="rc-tag ${tagCls[t]}">${tagLabel[t]}</span>
+      ${uploaded ? `<a class="rc-drive-btn" href="${uploaded.link}" target="_blank"><i class="ti ti-brand-google-drive"></i> Open File</a>` : '<div style="margin-top:8px;font-size:9px;color:var(--muted);font-family:Share Tech Mono,monospace">— not uploaded yet —</div>'}
+    </div>`;
+  }).join('');
+
+  // Extra uploaded resources not matching a syllabus entry
+  uploadedCards.forEach(r=>{
+    const alreadyShown = syllabusPairs.some(({c,t})=>c.code===r.code && t===r.type);
+    if(!alreadyShown){
+      html+=`<div class="resource-card" onclick="openModal('${r.code}','${r.course}','${r.type}','${r.link}','${r.desc||''}')">
+        <div class="rc-line ${lineCls[r.type]}"></div>
+        <div class="rc-icon ${icoColor[r.type]}"><i class="ti ${icoClass[r.type]}"></i></div>
+        <div class="rc-code">${r.code} · ${r.sem}</div>
+        <div class="rc-title">${r.course}</div>
+        <div class="rc-meta">${metaMap[r.type]}</div>
+        <span class="rc-tag ${tagCls[r.type]}">${tagLabel[r.type]}</span>
+        <a class="rc-drive-btn" href="${r.link}" target="_blank"><i class="ti ti-brand-google-drive"></i> Open File</a>
+      </div>`;
+    }
+  });
+
+  grid.innerHTML=html||'<div class="empty-state"><i class="ti ti-database-off"></i><p>No resources uploaded yet<br>for this semester and type.<br>Be the first to contribute!</p></div>';
+  
+  const total=syllabusPairs.length+uploadedCards.filter(r=>!syllabusPairs.some(({c,t})=>c.code===r.code&&t===r.type)).length;
+  document.getElementById('sec-cnt').textContent=total+' entries';
+  const sk=typeof activeSem==='number'?`SEM_0${activeSem}`:(activeSem==='iot'?'IOT_MINOR':'DEPT_ELECTIVES');
+  const tl=activeTab==='all'?'ALL_RESOURCES':activeTab.toUpperCase()+'S';
+  document.getElementById('sec-label').textContent=`${sk} // ${tl}`;
+  renderSemInfo();
+}
+
+function setSem(btn,n){
+  activeSem=n;
+  document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('searchbox').value='';
+  renderCards();
+}
+function setTab(btn,t){
+  activeTab=t;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards();
+}
+function setChip(btn,f){
+  activeChip=f;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');
+  renderCards();
+}
+function filterSearch(q){
+  document.querySelectorAll('.resource-card').forEach(c=>{
+    const n=c.dataset.name||'',cd=c.dataset.code||'';
+    c.style.display=(!q||n.includes(q.toLowerCase())||cd.includes(q.toLowerCase()))?'':'none';
+  });
+}
+
+// ── PAGES ──
+const pages=['home','upload','notice','grades','about','admin'];
+function showPage(id, btn){
+  pages.forEach(p=>document.getElementById('page-'+p).classList.remove('show'));
+  document.getElementById('page-'+id).classList.add('show');
+  document.querySelectorAll('.nl').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(id==='home') renderCards();
+  if(id==='admin') renderAdmin();
+}
+
+// ── UPLOAD ──
+function submitResource(){
+  const sem=document.getElementById('up-sem').value;
+  const type=document.getElementById('up-type').value;
+  const course=document.getElementById('up-course').value.trim();
+  const code=document.getElementById('up-code').value.trim().toUpperCase();
+  const link=document.getElementById('up-link').value.trim();
+  const name=document.getElementById('up-name').value.trim();
+  const desc=document.getElementById('up-desc').value.trim();
+  if(!sem||!type||!course||!link){alert('Please fill in Semester, Type, Course Name, and Drive Link.');return;}
+  if(!link.startsWith('http')){alert('Please enter a valid Google Drive URL.');return;}
+  const resource={id:Date.now(),sem,type,course,code,link,name,desc,submittedAt:new Date().toLocaleDateString()};
+  pendingResources.push(resource);
+  savePending();
+  document.getElementById('submit-success').style.display='block';
+  ['up-sem','up-type','up-course','up-code','up-year','up-link','up-name','up-desc'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.value='';
+  });
+  setTimeout(()=>document.getElementById('submit-success').style.display='none',5000);
+}
+
+// ── ADMIN ──
+let isLoggedIn = sessionStorage.getItem('qzone_admin')==='1';
+function adminLogin(){
+  const pw=document.getElementById('admin-pw').value;
+  if(pw===ADMIN_PASSWORD){
+    isLoggedIn=true;
+    sessionStorage.setItem('qzone_admin','1');
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    renderAdmin();
+  } else {
+    document.getElementById('login-err').style.display='block';
+    setTimeout(()=>document.getElementById('login-err').style.display='none',2000);
+  }
+}
+function adminLogout(){
+  isLoggedIn=false;
+  sessionStorage.removeItem('qzone_admin');
+  document.getElementById('admin-login').style.display='block';
+  document.getElementById('admin-panel').style.display='none';
+  document.getElementById('admin-pw').value='';
+}
+
+function renderAdmin(){
+  if(!isLoggedIn){
+    document.getElementById('admin-login').style.display='block';
+    document.getElementById('admin-panel').style.display='none';
+    return;
+  }
+  document.getElementById('admin-login').style.display='none';
+  document.getElementById('admin-panel').style.display='block';
+  document.getElementById('pending-count').textContent=pendingResources.length;
+  
+  const pList=document.getElementById('pending-list');
+  if(pendingResources.length===0){
+    pList.innerHTML='<div class="no-pending"><i class="ti ti-circle-check" style="font-size:28px;color:var(--g3);display:block;margin-bottom:8px"></i>No pending submissions</div>';
+  } else {
+    pList.innerHTML=pendingResources.map(r=>`
+      <div class="admin-card" id="pc-${r.id}">
+        <div class="ac-info">
+          <div class="ac-code">${r.code||'—'} · ${r.sem} · ${(r.type||'').toUpperCase()}</div>
+          <div class="ac-name">${r.course}</div>
+          <div class="ac-meta">Submitted by: ${r.name||'Anonymous'} · ${r.submittedAt}</div>
+          ${r.desc?`<div class="ac-meta">${r.desc}</div>`:''}
+          <a class="ac-link" href="${r.link}" target="_blank"><i class="ti ti-brand-google-drive"></i> ${r.link}</a>
+        </div>
+        <div class="ac-actions">
+          <button class="approve-btn" onclick="approveResource(${r.id})"><i class="ti ti-check"></i> Approve</button>
+          <button class="reject-btn" onclick="rejectResource(${r.id})"><i class="ti ti-x"></i> Reject</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const aList=document.getElementById('approved-list');
+  if(approvedResources.length===0){
+    aList.innerHTML='<div style="color:var(--muted);font-family:Share Tech Mono,monospace;font-size:11px">No approved resources yet</div>';
+  } else {
+    aList.innerHTML=approvedResources.map(r=>`
+      <div class="al-item">
+        <div class="al-item-code">${r.code||'—'} · ${r.sem}</div>
+        <div class="al-item-name">${r.course}</div>
+        <div class="al-item-type">${(r.type||'').toUpperCase()} · ${r.submittedAt}</div>
+        <button class="al-del" onclick="removeApproved(${r.id})" title="Remove"><i class="ti ti-trash"></i></button>
+      </div>
+    `).join('');
+  }
+}
+
+function approveResource(id){
+  const idx=pendingResources.findIndex(r=>r.id===id);
+  if(idx===-1) return;
+  const res=pendingResources.splice(idx,1)[0];
+  approvedResources.push(res);
+  savePending(); saveApproved();
+  renderAdmin();
+}
+function rejectResource(id){
+  pendingResources=pendingResources.filter(r=>r.id!==id);
+  savePending();
+  renderAdmin();
+}
+function removeApproved(id){
+  if(!confirm('Remove this approved resource from the site?')) return;
+  approvedResources=approvedResources.filter(r=>r.id!==id);
+  saveApproved();
+  renderAdmin();
+}
+
+// ── MODAL ──
+function openModal(code,name,type,link,desc){
+  if(!link) return;
+  document.getElementById('modal-title').textContent=name;
+  document.getElementById('modal-code').textContent=code+' · '+tagLabel[type];
+  document.getElementById('modal-desc').textContent=desc||metaMap[type];
+  document.getElementById('modal-link').href=link;
+  document.getElementById('res-modal').classList.add('show');
+}
+function closeModal(e){
+  if(e.target===document.getElementById('res-modal'))
+    document.getElementById('res-modal').classList.remove('show');
+}
+
+// ── THEME ──
+let isLight=false;
+function toggleTheme(){
+  isLight=!isLight;
+  document.body.classList.toggle('light',isLight);
+  document.getElementById('ticon').className=isLight?'ti ti-moon':'ti ti-sun';
+}
+
+// ── INIT ──
+if(isLoggedIn){
+  document.getElementById('admin-login').style.display='none';
+  document.getElementById('admin-panel').style.display='block';
+}
+renderCards();
+</script>
+</body>
+</html>
