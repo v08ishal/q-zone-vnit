@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Q-ZONE | VNIT ECE Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,30 +13,38 @@
     <nav class="navbar">
         <div class="logo">Q-ZONE</div>
         <div class="nav-links">
-            <a href="#">SEMESTERS</a>
-            <a href="#">VNIT</a>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#semesters-section">Semesters</a>
+            <a href="https://vnit.ac.in/" target="_blank">VNIT Home</a>
         </div>
     </nav>
 
-    <div class="hero">
-        <h1 class="hero-title">Q-ZONE</h1>
-        <p class="subtitle">THE ULTIMATE ECE HUB</p>
-    </div>
+    <header class="hero">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Q-ZONE</h1>
+            <p class="hero-quote">Do it on your own cuz nobody else will.</p>
+            <a href="#semesters-section" class="explore-btn">Explore Semesters</a>
+        </div>
+    </header>
 
-    <div class="container">
-        <div class="resource-grid">
-            <button class="primary-btn" onclick="loadSemester('SEMESTER 1')">SEMESTER 1</button>
-            <button class="primary-btn" onclick="loadSemester('SEMESTER 2')">SEMESTER 2</button>
-            <button class="primary-btn" onclick="loadSemester('SEMESTER 3')">SEMESTER 3</button>
-            <button class="primary-btn" onclick="loadSemester('SEMESTER 4')">SEMESTER 4</button>
-            <button class="primary-btn" onclick="loadSemester('SEMESTER 5')">SEMESTER 5</button>
-            <button class="primary-btn" onclick="loadSemester('SEMESTER 6')">SEMESTER 6</button>
+    <section id="semesters-section" class="container">
+        <div class="section-header">
+            <h2>Explore Semesters</h2>
+            <p>Navigate through your academic terms with detailed information about courses, professors, and resources.</p>
         </div>
         
-        <button class="master-btn" onclick="window.open('#', '_blank')">
-            📚 ECE MASTER FILES
-        </button>
-    </div>
+        <div class="year-filters">
+            <button class="filter-btn active" onclick="filterYears('All')">All Years</button>
+            <button class="filter-btn" onclick="filterYears('First')">First Year</button>
+            <button class="filter-btn" onclick="filterYears('Second')">Second Year</button>
+            <button class="filter-btn" onclick="filterYears('Third')">Third Year</button>
+            <button class="filter-btn" onclick="filterYears('Final')">Final Year</button>
+        </div>
+
+        <div class="resource-grid" id="semester-grid">
+            </div>
+    </section>
 
     <div id="semester-modal" class="modal">
         <div class="modal-content">
@@ -43,6 +53,16 @@
             <div id="subject-container"></div>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <h2 class="footer-logo">Q-ZONE</h2>
+        <div class="social-icons">
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:your.email@students.vnit.ac.in" class="social-btn"><i class="fas fa-envelope"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="copyright">© 2026 Q-Zone. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
