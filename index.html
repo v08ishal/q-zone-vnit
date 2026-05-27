@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q-ZONE | VNIT ECE Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Q-ZONE</div>
+        <div class="nav-links">
+            <a href="#">SEMESTERS</a>
+            <a href="#">VNIT</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1 class="hero-title">Q-ZONE</h1>
+        <p class="subtitle">THE ULTIMATE ECE HUB</p>
+    </div>
+
+    <div class="container">
+        <div class="resource-grid">
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 1')">SEMESTER 1</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 2')">SEMESTER 2</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 3')">SEMESTER 3</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 4')">SEMESTER 4</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 5')">SEMESTER 5</button>
+            <button class="primary-btn" onclick="loadSemester('SEMESTER 6')">SEMESTER 6</button>
+        </div>
+        
+        <button class="master-btn" onclick="window.open('#', '_blank')">
+            📚 ECE MASTER FILES
+        </button>
+    </div>
+
+    <div id="semester-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">SEMESTER</h2>
+            <div id="subject-container"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
