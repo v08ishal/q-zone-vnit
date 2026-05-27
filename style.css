@@ -1,32 +1,47 @@
-/* 1. IMPORT PREMIUM TECH FONT (Montserrat) */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
-
-/* Core Reset */
+/* =========================================
+   ZOT-HUB RESET & BASE THEME
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Force the new premium font across the whole site */
     font-family: 'Montserrat', sans-serif;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
-    background-color: #0b1120;
-    color: #f8fafc;
+    background-color: #050914; /* Deep Zot-Hub Black */
+    color: #e2e8f0;
     line-height: 1.6;
 }
 
-/* Navigation */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 50px;
+    padding: 20px 50px;
+    background-color: rgba(5, 9, 20, 0.9);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1e293b;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 900; /* Extra thick */
+    font-size: 1.6rem;
+    font-weight: 900;
     color: #4ade80;
     letter-spacing: 2px;
 }
@@ -37,186 +52,220 @@ body {
 }
 
 .nav-links a {
-    color: #cbd5e1;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #4ade80;
-}
-
-/* Hero Section */
-.hero {
-    text-align: center;
-    margin-top: 60px;
-    margin-bottom: 50px;
-}
-
-.hero-title {
-    font-size: 5rem;
-    font-weight: 900; /* Extra thick for the main logo */
-    color: #4ade80;
-    text-shadow: 0 0 25px rgba(74, 222, 128, 0.4);
-    letter-spacing: 4px;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    color: #cbd5e1;
-    font-weight: 700;
-    letter-spacing: 4px;
-    font-size: 1.1rem;
-}
-
-/* Grid & Buttons */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.resource-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.primary-btn {
-    background-color: #1e293b;
-    color: #f8fafc;
-    border: 1px solid #334155;
-    padding: 20px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: 700; /* Bold buttons */
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.primary-btn:hover {
-    background-color: #334155;
-    border-color: #475569;
-    color: #4ade80;
-}
-
-.master-btn {
-    width: 100%;
-    margin-top: 15px;
-    background-color: transparent;
-    color: #4ade80;
-    border: 1px solid #4ade80;
-    padding: 16px;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.master-btn:hover {
-    background-color: rgba(74, 222, 128, 0.1);
-}
-
-/* Simple Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-.modal-content {
-    background-color: #0f172a;
-    margin: 10% auto;
-    padding: 30px;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 8px;
-    border: 1px solid #1e293b;
-}
-
-.close-btn {
     color: #94a3b8;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-btn:hover { color: #f8fafc; }
-
-#modal-title {
-    color: #4ade80;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #1e293b;
-    padding-bottom: 10px;
-    font-weight: 900;
-}
-
-.subject-card {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 6px;
-    padding: 20px;
-    margin-bottom: 15px;
-}
-
-.subject-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.subject-header h3 {
-    font-weight: 700;
-}
-
-.credit-badge {
-    background: #0f172a;
-    color: #4ade80;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.resource-links {
-    display: flex;
-    gap: 10px;
-}
-
-.resource-btn {
-    background: #0f172a;
-    color: #e2e8f0;
-    padding: 10px;
-    border-radius: 4px;
     text-decoration: none;
-    flex: 1;
-    text-align: center;
-    border: 1px solid #334155;
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 14px;
     transition: 0.3s;
 }
 
-.resource-btn:hover {
-    border-color: #4ade80;
-    color: #4ade80;
+.nav-links a:hover { color: #f8fafc; }
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(5,9,20,0.8), rgba(5,9,20,0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80') center/cover;
 }
 
-/* Mobile Fixes */
-@media screen and (max-width: 600px) {
-    .navbar { flex-direction: column; gap: 15px; padding: 20px; }
+.hero-overlay {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: #f8fafc;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(74,222,128,0.5);
+}
+
+.hero-quote {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.explore-btn {
+    background-color: #4ade80;
+    color: #050914;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.explore-btn:hover {
+    background-color: #f8fafc;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+}
+
+/* =========================================
+   SEMESTERS EXPLORE SECTION
+   ========================================= */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #f8fafc;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.year-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #4ade80;
+    color: #050914;
+    border-color: #4ade80;
+}
+
+/* ZOT-HUB GRID & CARDS */
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.zot-card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 25px;
+    transition: 0.3s ease;
+    text-align: left;
+}
+
+.zot-card:hover {
+    transform: translateY(-5px);
+    border-color: #334155;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.zot-year {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.zot-card h3 {
+    font-size: 1.5rem;
+    color: #f8fafc;
+    margin: 10px 0 20px 0;
+}
+
+.zot-stats {
+    margin-bottom: 20px;
+}
+
+.zot-stats p {
+    color: #cbd5e1;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.status {
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.status.available { background: rgba(74, 222, 128, 0.1); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.2); }
+.status.unavailable { background: rgba(244, 63, 94, 0.1); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.2); }
+
+.view-btn {
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    background: #1e293b;
+    color: #f8fafc;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-btn:hover { background: #4ade80; color: #050914; }
+.view-btn:disabled { background: #0f172a; color: #334155; cursor: not-allowed; }
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.site-footer {
+    padding: 60px 20px 30px;
+    text-align: center;
+    border-top: 1px solid #1e293b;
+    background-color: #050914;
+}
+
+.footer-logo { font-size: 1.8rem; font-weight: 900; color: #4ade80; margin-bottom: 20px; }
+.social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+.social-btn {
+    width: 40px; height: 40px; border-radius: 50%; background: #0f172a; color: #f8fafc;
+    display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;
+}
+.social-btn:hover { background: #4ade80; color: #050914; }
+.copyright { color: #64748b; font-size: 13px; font-weight: 600; }
+
+/* =========================================
+   MODAL (Unchanged)
+   ========================================= */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; overflow-y: auto; }
+.modal-content { background: #0f172a; margin: 10% auto; padding: 30px; width: 90%; max-width: 600px; border-radius: 8px; border: 1px solid #1e293b; }
+.close-btn { color: #94a3b8; float: right; font-size: 28px; cursor: pointer; }
+#modal-title { color: #4ade80; margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
+.subject-card { background: #1e293b; border-radius: 6px; padding: 20px; margin-bottom: 15px; }
+.subject-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
+.resource-links { display: flex; gap: 10px; }
+.resource-btn { background: #0f172a; color: #e2e8f0; padding: 10px; border-radius: 4px; text-decoration: none; flex: 1; text-align: center; font-weight: 600; border: 1px solid #334155; }
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .navbar { padding: 15px 20px; }
+    .nav-links { display: none; /* Can add hamburger menu later */ }
     .hero-title { font-size: 3.5rem; }
-    .resource-grid { grid-template-columns: 1fr; }
-    .resource-links { flex-direction: column; }
-    .subject-header { flex-direction: column; gap: 10px; align-items: flex-start; }
 }
